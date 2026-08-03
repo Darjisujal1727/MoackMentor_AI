@@ -1,0 +1,510 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MockMentor AI - System Admin Panel</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-hover: #1d4ed8;
+            --dark-navy: #0f172a;
+            --sidebar-bg: #1e293b;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Admin Navbar */
+        .admin-navbar {
+            background: var(--dark-navy);
+            color: #ffffff;
+            padding: 0.85rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .admin-brand {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-badge {
+            background: rgba(37, 99, 235, 0.3);
+            color: #60a5fa;
+            border: 1px solid rgba(96, 165, 250, 0.4);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-admin-nav {
+            color: #cbd5e1;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-admin-nav:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Container */
+        .admin-container {
+            max-width: 1350px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Stat Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .admin-stat-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease;
+        }
+
+        .admin-stat-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .stat-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .stat-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .icon-blue { background: #eff6ff; color: #2563eb; }
+        .icon-green { background: #ecfdf5; color: #10b981; }
+        .icon-purple { background: #f5f3ff; color: #8b5cf6; }
+        .icon-orange { background: #fff7ed; color: #f97316; }
+
+        .stat-title {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        /* Data Panel Card */
+        .data-panel-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 1.75rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        }
+
+        .panel-header-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .panel-header-title i {
+            color: var(--primary-blue);
+        }
+
+        /* Custom Table */
+        .admin-table {
+            width: 100%;
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+
+        .admin-table th {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 16px;
+            background: #f8fafc;
+        }
+
+        .admin-table td {
+            font-size: 0.9rem;
+            padding: 14px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+        }
+
+        .admin-table tr:hover td {
+            background: #f8fafc;
+        }
+
+        /* Badges */
+        .role-badge {
+            background: #e0e7ff;
+            color: #4338ca;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        .score-pill {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #10b981;
+        }
+
+        /* Action Buttons */
+        .btn-table-action {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: #ffffff;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-table-action:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+            background: #eff6ff;
+        }
+
+        .btn-danger-action {
+            color: #ef4444;
+            border-color: #fee2e2;
+        }
+
+        /* Horizontal Nav Links */
+        .admin-horizontal-nav .nav-link {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.5rem 1.25rem;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .admin-horizontal-nav .nav-link:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .admin-horizontal-nav .nav-link.active {
+            color: #ffffff;
+            background: var(--primary-blue);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-danger-action:hover {
+            background: #fef2f2;
+            border-color: #ef4444;
+            color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Horizontal Admin Top Navbar -->
+    <header class="admin-navbar">
+        <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <!-- Brand Logo -->
+            <a href="/admin" class="admin-brand">
+                <i class="fas fa-user-shield text-primary fs-4"></i>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="fw-bold fs-5 text-white">MockMentor AI</span>
+                    <span class="admin-badge">Admin Portal</span>
+                </div>
+            </a>
+
+            <!-- Horizontal Navigation Items -->
+            <ul class="nav admin-horizontal-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/admin">
+                        <i class="fas fa-chart-pie"></i> Dashboard Overview
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/reports">
+                        <i class="fas fa-chart-bar"></i> Candidate Reports & Analytics
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard" target="_blank">
+                        <i class="fas fa-desktop"></i> Candidate Workspace
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Admin Profile / Logout -->
+            <div class="d-flex align-items-center gap-3">
+                <div class="text-white d-none d-md-flex align-items-center gap-2 font-sm" style="font-size: 0.88rem;">
+                    <i class="fas fa-user-circle text-info fs-5"></i>
+                    <span>Administrator</span>
+                </div>
+                <a href="/logout" class="btn btn-outline-light btn-sm font-semibold" style="border-radius: 8px;">
+                    <i class="fas fa-sign-out-alt me-1"></i> Logout
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="admin-container">
+        
+        <!-- Welcome Heading -->
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+            <div>
+                <h2 class="fw-bold text-dark mb-1">System Administration Console 👋</h2>
+                <p class="text-muted mb-0">Manage registered candidates, track AI interview sessions, and monitor performance.</p>
+            </div>
+            <div>
+                <a href="/api/admin/audit_log/download" class="btn btn-primary" style="border-radius: 10px; font-weight: 600;">
+                    <i class="fas fa-download me-1"></i> System Audit Log
+                </a>
+            </div>
+        </div>
+
+        <!-- System Analytics Stat Cards -->
+        <div class="stats-grid">
+            <div class="admin-stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-title">Total Candidates</span>
+                    <div class="stat-icon-box icon-blue">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <div class="stat-value">{{ total_users }}</div>
+            </div>
+
+            <div class="admin-stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-title">Completed Interviews</span>
+                    <div class="stat-icon-box icon-green">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                </div>
+                <div class="stat-value">{{ total_interviews }}</div>
+            </div>
+
+            <div class="admin-stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-title">Average Platform Score</span>
+                    <div class="stat-icon-box icon-purple">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+                <div class="stat-value">{{ avg_score }}%</div>
+            </div>
+
+            <div class="admin-stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-title">AI Engine Health</span>
+                    <div class="stat-icon-box icon-orange">
+                        <i class="fas fa-server"></i>
+                    </div>
+                </div>
+                <div class="stat-value" style="font-size: 1.4rem; color: #10b981;">Online (99.9%)</div>
+            </div>
+        </div>
+
+        <!-- User Candidate Management Section -->
+        <div class="data-panel-card">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                <div class="panel-header-title">
+                    <i class="fas fa-user-gear"></i> Registered Candidate Accounts ({{ users|length }})
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table admin-table">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Candidate Name</th>
+                            <th>Email Address</th>
+                            <th>Mobile</th>
+                            <th>Age</th>
+                            <th>Role</th>
+                            <th>Registered Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for candidate in users %}
+                        <tr id="user-row-{{ candidate.id }}">
+                            <td><strong>#{{ candidate.id }}</strong></td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="fas fa-user-circle text-secondary fs-5"></i>
+                                    <span class="fw-bold">{{ candidate.full_name or 'Candidate User' }}</span>
+                                </div>
+                            </td>
+                            <td>{{ candidate.email }}</td>
+                            <td>{{ candidate.mobile or 'N/A' }}</td>
+                            <td><span class="badge bg-light text-primary border" style="font-size: 0.8rem; font-weight: 600;">{{ candidate.age or 21 }} Yrs</span></td>
+                            <td><span class="role-badge">{{ candidate.role or 'Student' }}</span></td>
+                            <td>{{ candidate.created_at.strftime('%d %b %Y') if candidate.created_at else 'Active' }}</td>
+                            <td>
+                                <button type="button" class="btn-table-action btn-danger-action" onclick="deleteUser({{ candidate.id }})">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Recent Interviews Management Section -->
+        <div class="data-panel-card">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                <div class="panel-header-title">
+                    <i class="fas fa-list-check"></i> Candidate Interview Evaluations ({{ interviews|length }})
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Candidate</th>
+                            <th>Interview Type</th>
+                            <th>Difficulty</th>
+                            <th>Score</th>
+                            <th>Performance</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for intv in interviews %}
+                        <tr id="intv-row-{{ intv.id }}">
+                            <td><strong>#{{ intv.id }}</strong></td>
+                            <td>{{ user_map[intv.user_id] if user_map[intv.user_id] else ('User #' ~ intv.user_id) }}</td>
+                            <td>{{ intv.interview_type }}</td>
+                            <td><span class="badge bg-light text-dark border">{{ intv.difficulty_level }}</span></td>
+                            <td><span class="score-pill">{{ intv.overall_score or 80 }}%</span></td>
+                            <td>
+                                {% if intv.overall_score and intv.overall_score < 65 %}
+                                <span class="badge bg-danger-subtle text-danger">Poor</span>
+                                {% elif intv.overall_score and intv.overall_score <= 80 %}
+                                <span class="badge bg-warning-subtle text-warning">Medium</span>
+                                {% else %}
+                                <span class="badge bg-success-subtle text-success">High</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ intv.created_at.strftime('%d %b %Y') if intv.created_at else 'Recent' }}</td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <a href="/interview/report/{{ intv.id }}" class="btn-table-action" target="_blank">
+                                        <i class="fas fa-file-invoice"></i> View Report
+                                    </a>
+                                    <a href="/api/interview/{{ intv.id }}/download_pdf" class="btn-table-action">
+                                        <i class="fas fa-download"></i> PDF
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JS Scripts for Admin Actions -->
+    <script>
+        function deleteUser(userId) {
+            if (!confirm('Are you sure you want to delete candidate user #' + userId + '?')) return;
+            fetch('/api/admin/users/' + userId + '/delete', {
+                method: 'POST'
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const row = document.getElementById('user-row-' + userId);
+                    if (row) row.remove();
+                    alert('Candidate deleted successfully.');
+                } else {
+                    alert(data.message || 'Failed to delete user.');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Server error while deleting user.');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,856 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start New Interview - MockMentor AI</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom Page Style Sheet -->
+    <!-- Embedded css/interview.css -->
+    <style>
+/* MockMentor AI - Start New Interview Page CSS */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary-blue: #2563eb;
+    --primary-blue-hover: #1d4ed8;
+    --primary-light-bg: #eff6ff;
+    --border-color: #e2e8f0;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --bg-page: #f8fafc;
+    --success-green: #10b981;
+    --tag-bg: #d1fae5;
+    --tag-text: #059669;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-dark);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation Header Styles */
+.landing-header {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(37, 99, 235, 0.12);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.navbar {
+    padding: 0;
+}
+
+.navbar-brand {
+    padding: 0;
+    text-decoration: none;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.brand-logo i {
+    font-size: 1.85rem;
+    color: var(--primary-blue, #2563eb);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-dark, #1e293b);
+    line-height: 1.2;
+}
+
+.brand-subtitle {
+    font-size: 0.7rem;
+    color: var(--text-muted, #64748b);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+.navbar-toggler {
+    border: none;
+    color: var(--text-dark, #1e293b);
+    padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler i {
+    font-size: 1.4rem;
+}
+
+.nav-link {
+    color: var(--text-muted, #64748b) !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem !important;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary-blue, #2563eb) !important;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.btn-icon {
+    background: transparent;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    color: var(--text-dark, #1e293b);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-icon:hover {
+    background: var(--primary-blue, #2563eb);
+    border-color: var(--primary-blue, #2563eb);
+    color: #ffffff;
+}
+
+.btn-login {
+    border: 1px solid var(--primary-blue, #2563eb);
+    padding: 0.45rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--primary-blue, #2563eb) !important;
+    background: transparent;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-login:hover {
+    background: var(--primary-blue, #2563eb);
+    border-color: var(--primary-blue, #2563eb);
+    color: #ffffff !important;
+}
+
+.btn-get-started {
+    background: var(--primary-blue, #2563eb);
+    border: none;
+    padding: 0.45rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #ffffff !important;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-get-started:hover {
+    background: var(--primary-blue-hover, #1d4ed8);
+    color: #ffffff !important;
+}
+
+.interview-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 6rem 2rem 3rem 2rem;
+}
+
+.page-title {
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+}
+
+.page-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+.section-number-heading {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+/* Main Section Containers */
+.resume-upload-wrapper {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.dropzone-box {
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    background: #f8fafc;
+    padding: 1.75rem 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    height: 100%;
+}
+
+.dropzone-box:hover, .dropzone-box.dragover {
+    border-color: var(--primary-blue);
+    background: #eff6ff;
+}
+
+.upload-icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
+}
+
+.dropzone-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.dropzone-or {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 4px 0 8px 0;
+}
+
+.btn-choose-file {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 18px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+}
+
+.btn-choose-file:hover {
+    background: var(--primary-blue-hover);
+    color: white;
+}
+
+.dropzone-subtext {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.85rem;
+}
+
+/* Resume Preview Box */
+.resume-preview-card {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem;
+    height: 100%;
+}
+
+.preview-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.file-preview-item {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.file-icon-box {
+    width: 38px;
+    height: 42px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    color: #64748b;
+    background: #f8fafc;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.file-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    display: block;
+    word-break: break-all;
+}
+
+.file-status {
+    font-size: 0.75rem;
+    color: var(--success-green);
+    font-weight: 500;
+}
+
+.btn-remove-file {
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 4px;
+    transition: transform 0.2s;
+}
+
+.btn-remove-file:hover {
+    transform: scale(1.1);
+}
+
+/* Section 2: Enter Details Manually */
+.manual-details-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.field-label {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon .form-control {
+    padding-right: 40px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    height: 44px;
+    font-size: 0.88rem;
+}
+
+.input-with-icon .input-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.skills-tags-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.skill-tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-weight: 600;
+    font-size: 0.82rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #a7f3d0;
+}
+
+.skill-tag .remove-tag {
+    cursor: pointer;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.skill-tag .remove-tag:hover {
+    opacity: 1;
+}
+
+/* Education Grid */
+.education-row {
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+.education-input-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.btn-add-education {
+    border: 1px solid #bfdbfe;
+    color: var(--primary-blue);
+    background: white;
+    border-radius: 8px;
+    padding: 7px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-add-education:hover {
+    background: #eff6ff;
+    border-color: var(--primary-blue);
+}
+
+/* Section 3: Sidebar Difficulty Cards */
+.difficulty-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+}
+
+.difficulty-card:hover {
+    border-color: #93c5fd;
+}
+
+.difficulty-card.active {
+    background: #eff6ff;
+    border: 2px solid var(--primary-blue);
+}
+
+.difficulty-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.diff-circle-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-block;
+}
+
+.diff-circle-easy { border: 2px solid #22c55e; }
+.diff-circle-medium { border: 2px solid #f59e0b; }
+.diff-circle-hard { border: 2px solid #ef4444; }
+
+.diff-title {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+.diff-sub {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.radio-indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #cbd5e1;
+    background: white;
+    box-sizing: border-box;
+    transition: all 0.2s;
+}
+
+.difficulty-card.active .radio-indicator {
+    border: 5px solid var(--primary-blue);
+}
+
+/* About Interview Box */
+.about-interview-box {
+    background: #eff6ff;
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 1.5rem 0;
+}
+
+.about-interview-header {
+    color: var(--primary-blue);
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.about-interview-list {
+    font-size: 0.82rem;
+    color: #475569;
+    line-height: 1.75;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Start Interview Button */
+.btn-start-interview {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-start-interview:hover {
+    background: var(--primary-blue-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="landing-header">
+        <div class="container-fluid px-4">
+            <nav class="navbar navbar-expand-lg">
+                <!-- Logo -->
+                <a class="navbar-brand" href="/">
+                    <div class="brand-logo">
+                        <i class="fas fa-brain"></i>
+                        <div class="brand-text">
+                            <span class="brand-name">MockMentor AI</span>
+                            <span class="brand-subtitle">Smart Interview Portal</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Mobile Toggle -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Navigation Links -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/#features">Features</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/#how-it-works">How It Works</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/#benefits">Benefits</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                    </ul>
+
+                    <!-- User Actions -->
+                    <div class="header-actions">
+                        <!-- <button class="btn-icon" id="darkModeToggle" title="Toggle Dark Mode">
+                            <i class="fas fa-moon"></i>
+                        </button> -->
+                        {% if session.get('user_id') %}
+                            <a href="/dashboard" class="btn btn-outline-light btn-login me-2">Dashboard</a>
+                            <a href="/logout" class="btn btn-outline-light btn-login">Logout</a>
+                        {% else %}
+                            <a href="/login" class="btn btn-outline-light btn-login">Login</a>
+                            <a href="/register" class="btn btn-primary btn-get-started">Get Started</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="interview-container">
+        
+        <div class="page-header">
+            <h1 class="page-title">Start New Interview</h1>
+            <p class="page-subtitle">Upload your resume or fill your details manually to start a personalized interview</p>
+        </div>
+
+        <div class="row g-4">
+            
+            <!-- Left Column: Resume Upload + Manual Details -->
+            <div class="col-lg-8">
+                
+                <!-- Section 1: Upload Resume (Optional) -->
+                <div class="mb-4">
+                    <h2 class="section-number-heading">1. Upload Resume (Optional)</h2>
+                    
+                    <div class="resume-upload-wrapper">
+                        <div class="row g-3">
+                            <!-- Drag & Drop Box -->
+                            <div class="col-md-6">
+                                <div class="dropzone-box" id="dropzoneBox">
+                                    <div class="upload-icon-circle">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <div class="dropzone-title">Drag & drop your resume here</div>
+                                    <div class="dropzone-or">or</div>
+                                    <button type="button" class="btn btn-choose-file" id="btnChooseFile">
+                                        <i class="fas fa-upload me-1" style="font-size: 0.75rem;"></i> Choose File
+                                    </button>
+                                    <div class="dropzone-subtext">Supported formats: PDF, DOC, DOCX (Max 5MB)</div>
+                                    <input type="file" id="resumeFileInput" accept=".pdf,.doc,.docx" class="d-none">
+                                </div>
+                            </div>
+                            
+                            <!-- Resume Preview Box -->
+                            <div class="col-md-6">
+                                <div class="resume-preview-card" id="resumePreviewCard" style="display: none;">
+                                    <div class="preview-title">Resume Preview</div>
+                                    <div class="file-preview-item">
+                                        <div class="d-flex align-items-center">
+                                            <div class="file-icon-box">
+                                                <i class="far fa-file-alt"></i>
+                                            </div>
+                                            <div>
+                                                <span class="file-name" id="resumeFileName"></span>
+                                                <span class="file-status" id="resumeStatus">Uploaded successfully</span>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn-remove-file" id="removeResumeBtn" title="Remove resume">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Or Enter Details Manually -->
+                <div>
+                    <h2 class="section-number-heading">2. Or Enter Details Manually</h2>
+                    
+                    <div class="manual-details-card">
+                        
+                        <!-- Skills Field -->
+                        <div class="mb-4">
+                            <label class="field-label">Skills</label>
+                            <div class="input-with-icon">
+                                <input type="text" id="skillInput" class="form-control" placeholder="Enter your skills (e.g. JavaScript, Python, Angular, SQL)">
+                                <i class="fas fa-chevron-down input-icon"></i>
+                            </div>
+                            
+                            <!-- Skill Tags Container -->
+                            <div class="skills-tags-wrapper" id="skillsContainer">
+                                <!-- Pre-populated skill tags via JavaScript -->
+                            </div>
+
+                            <!-- Quick Study Field & Vocation Stream Badges -->
+                            <div class="mt-3">
+                                <label class="field-label mb-1" style="font-size: 0.82rem; color: var(--text-muted);">Quick Select Study Stream / Trade Library:</label>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('BBA')"><i class="fas fa-briefcase me-1"></i> BBA</button>
+                                    <button type="button" class="btn btn-sm btn-outline-info rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('BCA')"><i class="fas fa-laptop-code me-1"></i> BCA</button>
+                                    <button type="button" class="btn btn-sm btn-outline-dark rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('MBA')"><i class="fas fa-chart-line me-1"></i> MBA</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('BCom')"><i class="fas fa-calculator me-1"></i> B.Com</button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('Law')"><i class="fas fa-gavel me-1"></i> Law (LL.B)</button>
+                                    <button type="button" class="btn btn-sm btn-outline-purple rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem; border-color: #8b5cf6; color: #8b5cf6;" onclick="addStreamTag('Design')"><i class="fas fa-palette me-1"></i> UI/UX Design</button>
+                                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('ITI')"><i class="fas fa-tools me-1"></i> ITI Trades</button>
+                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('Hardware')"><i class="fas fa-microchip me-1"></i> Hardware & Net</button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('Mechanical')"><i class="fas fa-cogs me-1"></i> Mechanical Eng</button>
+                                    <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('Civil')"><i class="fas fa-building me-1"></i> Civil Eng</button>
+                                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('Pharmacy')"><i class="fas fa-pills me-1"></i> Pharmacy</button>
+                                    <button type="button" class="btn btn-sm btn-outline-dark rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('CyberSecurity')"><i class="fas fa-user-shield me-1"></i> Cyber Security</button>
+                                    <button type="button" class="btn btn-sm btn-outline-info rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('AI_ML')"><i class="fas fa-brain me-1"></i> AI & ML</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('DevOps')"><i class="fas fa-infinity me-1"></i> DevOps</button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3 py-1 font-semibold" style="font-size: 0.78rem;" onclick="addStreamTag('Medical_Nursing')"><i class="fas fa-user-nurse me-1"></i> Nursing / Med</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Education Section -->
+                        <div>
+                            <label class="field-label">Education</label>
+                            
+                            <div id="educationContainer">
+                                <div class="row g-3 education-row">
+                                    <div class="col-md-3">
+                                        <div class="education-input-label">Degree</div>
+                                        <input type="text" class="form-control degree-input" placeholder="e.g. B.Tech">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="education-input-label">Specialization</div>
+                                        <input type="text" class="form-control spec-input" placeholder="e.g. Computer Science">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="education-input-label">University/College</div>
+                                        <input type="text" class="form-control uni-input" placeholder="e.g. Mumbai University">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="education-input-label">Year of Passing</div>
+                                        <div class="input-with-icon">
+                                            <input type="text" class="form-control year-input" placeholder="e.g. 2024">
+                                            <i class="far fa-calendar-alt input-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Add Another Education Button -->
+                            <div class="d-flex justify-content-end mt-3">
+                                <button type="button" class="btn-add-education" id="btnAddEducation">
+                                    <i class="fas fa-plus"></i> Add Another Education
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Interview Type Sidebar -->
+            <div class="col-lg-4">
+                
+                <h2 class="section-number-heading mb-1">3. Interview Type</h2>
+                <p class="page-subtitle mb-3" style="font-size: 0.85rem;">Select difficulty level</p>
+
+                <!-- Difficulty Options Stack -->
+                <div class="difficulty-options mb-4">
+                    
+                    <!-- Easy -->
+                    <div class="difficulty-card active" data-difficulty="easy">
+                        <div class="difficulty-left">
+                            <span class="diff-circle-icon diff-circle-easy"></span>
+                            <div>
+                                <div class="diff-title">Easy</div>
+                                <div class="diff-sub">Basic questions, beginner level</div>
+                            </div>
+                        </div>
+                        <div class="radio-indicator"></div>
+                    </div>
+
+                    <!-- Medium -->
+                    <div class="difficulty-card" data-difficulty="medium">
+                        <div class="difficulty-left">
+                            <span class="diff-circle-icon diff-circle-medium"></span>
+                            <div>
+                                <div class="diff-title">Medium</div>
+                                <div class="diff-sub">Intermediate level questions</div>
+                            </div>
+                        </div>
+                        <div class="radio-indicator"></div>
+                    </div>
+
+                    <!-- Hard -->
+                    <div class="difficulty-card" data-difficulty="hard">
+                        <div class="difficulty-left">
+                            <span class="diff-circle-icon diff-circle-hard"></span>
+                            <div>
+                                <div class="diff-title">Hard</div>
+                                <div class="diff-sub">Advanced questions, expert level</div>
+                            </div>
+                        </div>
+                        <div class="radio-indicator"></div>
+                    </div>
+
+                </div>
+
+                <!-- About Interview Box -->
+                <div class="about-interview-box">
+                    <div class="about-interview-header">
+                        <i class="far fa-info-circle"></i> About Interview
+                    </div>
+                    <ul class="about-interview-list">
+                        <li>Total Questions: 10</li>
+                        <li>Duration: 15-20 minutes</li>
+                        <li>Questions are based on your skills and experience</li>
+                    </ul>
+                </div>
+
+                <!-- Validation Warning Alert Container -->
+                <div id="validationAlert" class="alert alert-danger d-none my-3" role="alert" style="border-radius: 10px; font-size: 0.88rem; font-weight: 500;">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    <span id="validationAlertText">Please upload a resume OR enter at least one skill to start the interview.</span>
+                </div>
+
+                <!-- Start Interview Primary Button -->
+                <button type="button" class="btn-start-interview" id="btnStartInterview">
+                    <i class="fas fa-play" style="font-size: 0.85rem;"></i> Start Interview
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Page JS -->
+    <script>
+        window.CURRENT_USER_ID = parseInt("{{ user.id if user else 0 }}", 10) || 0;
+    </script>
+    <script src="{{ url_for('static', filename='js/interview.js') }}"></script>
+</body>
+</html>

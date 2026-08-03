@@ -1,0 +1,1489 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - MockMentor AI | Smart Interview Portal</title>
+    <meta name="description"
+        content="Learn about MockMentor AI — the AI-powered interview preparation platform built to help students and professionals ace their interviews with confidence.">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ========== Root Variables (matching project theme) ========== */
+        :root {
+            --primary-blue: #2563EB;
+            --primary-blue-dark: #1D4ED8;
+            --primary-blue-light: #3B82F6;
+            --light-bg: #FFFFFF;
+            --light-bg-secondary: #F8FAFC;
+            --text-dark: #1E293B;
+            --text-gray: #64748B;
+            --border-color: #E2E8F0;
+            --gradient-start: #FFFFFF;
+            --gradient-end: #F0F9FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        /* ========== Navbar (identical to index.html) ========== */
+        .landing-header {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar {
+            padding: 0;
+        }
+
+        .navbar-brand {
+            padding: 0;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-logo i {
+            font-size: 2rem;
+            color: var(--primary-blue);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .brand-subtitle {
+            font-size: 0.72rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .navbar-toggler {
+            border: none;
+            color: var(--text-dark);
+        }
+
+        .navbar-toggler i {
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-gray) !important;
+            font-weight: 500;
+            padding: 0.75rem 1rem !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active-page {
+            color: var(--primary-blue) !important;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-icon {
+            background: transparent;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            color: var(--text-dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-icon:hover {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-login {
+            border: 1px solid var(--primary-blue);
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            color: var(--primary-blue) !important;
+        }
+
+        .btn-login:hover {
+            background: var(--primary-blue);
+            color: white !important;
+        }
+
+        .btn-get-started {
+            background: var(--primary-blue);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            color: white !important;
+        }
+
+        .btn-get-started:hover {
+            background: var(--primary-blue-dark);
+            color: white !important;
+        }
+
+        /* ========== Page Hero ========== */
+        .about-hero {
+            padding: 9rem 0 5rem;
+            background: linear-gradient(160deg, #ffffff 0%, #eff6ff 50%, #f0f9ff 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.07) 0%, transparent 70%);
+            top: -100px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
+            bottom: -60px;
+            right: -60px;
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            color: var(--primary-blue);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .about-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+            background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-hero p.lead {
+            font-size: 1.15rem;
+            color: var(--text-gray);
+            max-width: 620px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary-hero {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-hero:hover {
+            background: var(--primary-blue-dark);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-outline-hero {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: transparent;
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-hero:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        /* ========== Stats Band ========== */
+        .stats-band {
+            background: var(--primary-blue);
+            padding: 3rem 0;
+        }
+
+        .stat-block {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-block .stat-number {
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-block .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            font-weight: 500;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.25);
+            margin: 0 auto;
+        }
+
+        /* ========== Section Header (shared) ========== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            color: var(--primary-blue);
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ========== Mission Section ========== */
+        .mission-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .mission-visual {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border-radius: 20px;
+            padding: 3rem;
+            height: 100%;
+            min-height: 360px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 1px solid rgba(37, 99, 235, 0.15);
+        }
+
+        .mission-icon-ring {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.35);
+        }
+
+        .mission-icon-ring i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .mission-visual h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .mission-visual p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .mission-content h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.25rem;
+            line-height: 1.3;
+        }
+
+        .mission-content h2 span {
+            color: var(--primary-blue);
+        }
+
+        .mission-content p {
+            color: var(--text-gray);
+            font-size: 1rem;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+
+        .mission-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 0.88rem;
+            padding: 7px 16px;
+            border-radius: 50px;
+            margin: 4px;
+        }
+
+        /* ========== Values Section ========== */
+        .values-section {
+            padding: 6rem 0;
+            background: var(--light-bg-secondary);
+        }
+
+        .value-card {
+            background: white;
+            border-radius: 18px;
+            padding: 2.25rem 2rem;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            text-align: center;
+        }
+
+        .value-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12);
+        }
+
+        .value-icon {
+            width: 68px;
+            height: 68px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .value-icon i {
+            font-size: 1.6rem;
+            color: white;
+        }
+
+        .value-card h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .value-card p {
+            color: var(--text-gray);
+            font-size: 0.93rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ========== Team Section ========== */
+        .team-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px rgba(37, 99, 235, 0.14);
+            border-color: var(--primary-blue);
+        }
+
+        .team-avatar-wrap {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 2.5rem 0 1.5rem;
+            text-align: center;
+        }
+
+        .team-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25);
+            border: 3px solid white;
+        }
+
+        .team-info {
+            padding: 1.5rem 1.75rem;
+            text-align: center;
+        }
+
+        .team-info h5 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-role {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.75rem;
+        }
+
+        .team-bio {
+            font-size: 0.88rem;
+            color: var(--text-gray);
+            line-height: 1.55;
+            margin-bottom: 1.25rem;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .team-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.88rem;
+            transition: all 0.3s ease;
+        }
+
+        .team-social a:hover {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+
+        /* ========== Story Timeline ========== */
+        .story-section {
+            padding: 6rem 0;
+            background: var(--light-bg-secondary);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1.75rem;
+            margin-bottom: 2.5rem;
+            align-items: flex-start;
+        }
+
+        .timeline-dot-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .timeline-dot {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            flex-shrink: 0;
+        }
+
+        .timeline-line {
+            width: 2px;
+            flex: 1;
+            background: linear-gradient(to bottom, rgba(37, 99, 235, 0.4), transparent);
+            min-height: 40px;
+            margin-top: 8px;
+        }
+
+        .timeline-content {
+            background: white;
+            border-radius: 14px;
+            padding: 1.5rem 1.75rem;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            flex: 1;
+        }
+
+        .timeline-year {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h5 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ========== Tech Stack ========== */
+        .tech-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .tech-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--light-bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            margin: 6px;
+        }
+
+        .tech-pill:hover {
+            background: rgba(37, 99, 235, 0.08);
+            border-color: rgba(37, 99, 235, 0.3);
+            color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .tech-pill i {
+            font-size: 1rem;
+            color: var(--primary-blue);
+        }
+
+        /* ========== CTA Section ========== */
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            top: -150px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            bottom: -80px;
+            left: -60px;
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.65;
+        }
+
+        .btn-cta-white {
+            background: white;
+            color: var(--primary-blue);
+            border: none;
+            padding: 1rem 2.25rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            margin: 6px;
+        }
+
+        .btn-cta-white:hover {
+            background: var(--light-bg-secondary);
+            color: var(--primary-blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-cta-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            padding: 1rem 2.25rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            margin: 6px;
+        }
+
+        .btn-cta-outline:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: white;
+            color: white;
+        }
+
+        /* ========== Footer (matching index.html) ========== */
+        .landing-footer {
+            background: var(--light-bg-secondary);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand i {
+            font-size: 1.75rem;
+            color: var(--primary-blue);
+        }
+
+        .footer-brand .brand-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .footer-brand .brand-subtitle {
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-description {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .landing-footer h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(12, 12, 214, 0.726);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .social-links a i {
+            font-size: 1.1rem;
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(37, 99, 235, 0.15);
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 991px) {
+            .about-hero h1 {
+                font-size: 2.4rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .about-hero {
+                padding: 7rem 0 4rem;
+            }
+
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-hero p.lead {
+                font-size: 1rem;
+            }
+
+            .stat-block .stat-number {
+                font-size: 2rem;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .timeline-line {
+                display: none;
+            }
+        }
+
+        /* ========== Animations ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadein {
+            animation: fadeInUp 0.7s ease both;
+        }
+
+        .animate-delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        .animate-delay-4 {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== Header / Navbar ========== -->
+    <header class="landing-header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <!-- Logo -->
+                    <a class="navbar-brand" href="/">
+                        <div class="brand-logo">
+                            <i class="fas fa-brain"></i>
+                            <div class="brand-text">
+                                <span class="brand-name">MockMentor AI</span>
+                                <span class="brand-subtitle">Smart Interview Portal</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Mobile Toggle -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <!-- Navigation Links -->
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/features">Features</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/how-it-works">How It Works</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/benefits">Benefits</a></li>
+                            <li class="nav-item"><a class="nav-link active-page" href="/about">About Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                        </ul>
+
+                        <!-- User Actions -->
+                        <div class="header-actions">
+                            <!--<button class="btn-icon" id="darkModeToggle" title="Toggle Theme">
+                                <i class="fas fa-moon"></i>
+                            </button>-->
+                            {% if session.get('user_id') %}
+                            <a href="/dashboard" class="btn btn-outline-light btn-login">Dashboard</a>
+                            <a href="/logout" class="btn btn-outline-light btn-login">Logout</a>
+                            {% else %}
+                            <a href="/login" class="btn btn-outline-light btn-login">Login</a>
+                            <a href="/register" class="btn btn-primary btn-get-started">Get Started</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== Hero Section ========== -->
+    <section class="about-hero">
+        <div class="container position-relative">
+            <div class="animate-fadein">
+                <span class="hero-badge"><i class="fas fa-info-circle"></i> About MockMentor AI</span>
+            </div>
+            <h1 class="animate-fadein animate-delay-1">We're Building the Future<br>of Interview Preparation</h1>
+            <p class="lead animate-fadein animate-delay-2">
+                MockMentor AI was born from one simple belief — every deserving candidate should have access to
+                world-class interview preparation, powered by AI and guided by real insights.
+            </p>
+            <div class="hero-actions animate-fadein animate-delay-3">
+                <a href="/interview" class="btn-primary-hero">
+                    <i class="fas fa-play-circle"></i> Start Practice
+                </a>
+                <a href="#our-story" class="btn-outline-hero">
+                    <i class="fas fa-book-open"></i> Our Story
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Stats Band ========== -->
+    <section class="stats-band">
+        <div class="container">
+            <div class="row align-items-center text-center g-0">
+                <div class="col-6 col-md-3 py-2">
+                    <div class="stat-block">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Students Trained</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 py-2">
+                    <div class="stat-block">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Interview Questions</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 py-2">
+                    <div class="stat-block">
+                        <div class="stat-number">4.8★</div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 py-2">
+                    <div class="stat-block">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Satisfaction Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Mission Section ========== -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <div class="mission-visual">
+                        <div class="mission-icon-ring">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>Democratize interview preparation using AI so every student — regardless of background — can
+                            walk into interviews with confidence and clarity.</p>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="mission-content ps-lg-3">
+                        <p class="section-label">WHY WE EXIST</p>
+                        <h2>Empowering Every Candidate to <span>Succeed</span></h2>
+                        <p>
+                            Interview preparation has always been expensive, time-consuming, and inaccessible to many.
+                            We started MockMentor AI to change that. Our AI-powered platform simulates real interview
+                            environments so you can practice, get instant feedback, and improve — all on your own
+                            schedule.
+                        </p>
+                        <p>
+                            Whether you're a fresher applying for your first job or a professional switching careers,
+                            MockMentor AI adapts to your skill level and provides personalized questions across the domains
+                            you care about most.
+                        </p>
+                        <div class="mt-3 d-flex flex-wrap">
+                            <span class="mission-pill"><i class="fas fa-check-circle"></i> AI-Powered Questions</span>
+                            <span class="mission-pill"><i class="fas fa-check-circle"></i> Real-Time Feedback</span>
+                            <span class="mission-pill"><i class="fas fa-check-circle"></i> PDF Reports</span>
+                            <span class="mission-pill"><i class="fas fa-check-circle"></i> Voice Recognition</span>
+                            <span class="mission-pill"><i class="fas fa-check-circle"></i> Multiple Difficulty
+                                Levels</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Core Values ========== -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">OUR CORE VALUES</p>
+                <h2 class="section-title">What Drives Us Every Day</h2>
+                <p class="section-desc">These principles guide every feature we build and every decision we make.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>Innovation First</h4>
+                        <p>We constantly push the boundaries of AI and speech recognition technology to deliver the most
+                            realistic interview simulation possible.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Student-Centric</h4>
+                        <p>Every feature is designed with the student in mind. We listen to feedback and continuously
+                            improve based on real user needs.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Privacy & Trust</h4>
+                        <p>Your data and interview sessions are private. We never share your information and follow
+                            best-in-class security practices.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Data-Driven Growth</h4>
+                        <p>We use real performance metrics to give you actionable feedback, helping you grow measurably
+                            with each interview session.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-universal-access"></i>
+                        </div>
+                        <h4>Accessibility</h4>
+                        <p>World-class interview prep shouldn't be expensive. MockMentor AI is designed to be accessible to
+                            every student, everywhere.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h4>Excellence in Craft</h4>
+                        <p>We take pride in every pixel and every algorithm — delivering premium quality without
+                            compromise in everything we do.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Our Story / Timeline ========== -->
+    <section class="story-section" id="our-story">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <div class="section-header text-start mb-4">
+                        <p class="section-label">OUR JOURNEY</p>
+                        <h2 class="section-title">The Story Behind MockMentor AI</h2>
+                        <p class="section-desc" style="margin: 0; text-align: left;">
+                            From a college project to a platform helping thousands — here's how MockMentor AI came to be.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="timeline-item">
+                        <div class="timeline-dot-wrap">
+                            <div class="timeline-dot"><i class="fas fa-seedling"></i></div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2023 — The Idea</div>
+                            <h5>Born in a College Dorm</h5>
+                            <p>A group of final-year engineering students struggled to find affordable mock interview
+                                tools. The frustration sparked the idea for MockMentor AI.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot-wrap">
+                            <div class="timeline-dot"><i class="fas fa-code"></i></div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2024 — First Build</div>
+                            <h5>MVP Launched</h5>
+                            <p>The first version shipped with 10 question templates, voice recognition, and basic
+                                scoring. 500 students signed up in the first week.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot-wrap">
+                            <div class="timeline-dot"><i class="fas fa-rocket"></i></div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2025 — Growth</div>
+                            <h5>AI Upgrade &amp; Expansion</h5>
+                            <p>Integrated Google Speech-to-Text, resume parsing, PDF reports, difficulty levels, and
+                                expanded to 8 subject domains.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot-wrap">
+                            <div class="timeline-dot"><i class="fas fa-star"></i></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2026 — Today</div>
+                            <h5>10,000+ Students Empowered</h5>
+                            <p>MockMentor AI now serves thousands of students across colleges and universities, with a 4.8★
+                                satisfaction rating and growing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Team Section ========== -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">THE TEAM</p>
+                <h2 class="section-title">Meet the People Behind MockMentor AI</h2>
+                <p class="section-desc">A passionate team of engineers, designers and educators united by one goal —
+                    your success.</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <!-- Team Member 1 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card">
+                        <div class="team-avatar-wrap">
+                            <div class="team-avatar" style="background: linear-gradient(135deg, #2563eb, #1d4ed8);">A
+                            </div>
+                        </div>
+                        <div class="team-info">
+                            <h5>Arjun Sharma</h5>
+                            <div class="team-role">Co-Founder &amp; CEO</div>
+                            <p class="team-bio">Full-stack engineer with a passion for EdTech. Led product vision and AI
+                                integration from day one.</p>
+                            <div class="team-social">
+                                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card">
+                        <div class="team-avatar-wrap">
+                            <div class="team-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">P
+                            </div>
+                        </div>
+                        <div class="team-info">
+                            <h5>Priya Patel</h5>
+                            <div class="team-role">Lead Designer</div>
+                            <p class="team-bio">UX/UI specialist focused on creating seamless, accessible, and
+                                delightful interview experiences.</p>
+                            <div class="team-social">
+                                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+                                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card">
+                        <div class="team-avatar-wrap">
+                            <div class="team-avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">R
+                            </div>
+                        </div>
+                        <div class="team-info">
+                            <h5>Rahul Verma</h5>
+                            <div class="team-role">AI / ML Engineer</div>
+                            <p class="team-bio">Machine learning expert who built the evaluation engine, scoring
+                                algorithms, and NLP pipelines.</p>
+                            <div class="team-social">
+                                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card">
+                        <div class="team-avatar-wrap">
+                            <div class="team-avatar" style="background: linear-gradient(135deg, #a855f7, #7c3aed);">S
+                            </div>
+                        </div>
+                        <div class="team-info">
+                            <h5>Sneha Iyer</h5>
+                            <div class="team-role">Content &amp; Education Lead</div>
+                            <p class="team-bio">Former HR professional who curated 500+ interview questions and ideal
+                                answers across all domains.</p>
+                            <div class="team-social">
+                                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Tech Stack ========== -->
+    <section class="tech-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">BUILT WITH</p>
+                <h2 class="section-title">Our Technology Stack</h2>
+                <p class="section-desc">MockMentor AI is built on a modern, reliable, and scalable tech foundation.</p>
+            </div>
+            <div class="text-center">
+                <span class="tech-pill"><i class="fab fa-python"></i> Python / Flask</span>
+                <span class="tech-pill"><i class="fas fa-database"></i> SQLite / SQLAlchemy</span>
+                <span class="tech-pill"><i class="fab fa-bootstrap"></i> Bootstrap 5</span>
+                <span class="tech-pill"><i class="fab fa-js"></i> Vanilla JavaScript</span>
+                <span class="tech-pill"><i class="fas fa-microphone"></i> Google Speech-to-Text</span>
+                <span class="tech-pill"><i class="fas fa-volume-up"></i> Google Text-to-Speech</span>
+                <span class="tech-pill"><i class="fas fa-file-pdf"></i> ReportLab PDF</span>
+                <span class="tech-pill"><i class="fas fa-file-word"></i> PyPDF / python-docx</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA Section ========== -->
+    <section class="cta-section">
+        <div class="container position-relative">
+            <h2>Ready to Ace Your Next Interview?</h2>
+            <p>Join 10,000+ students who are already practising smarter with MockMentor AI. Start your first AI mock
+                interview for free — no credit card required.</p>
+            <div>
+                <a href="/interview" class="btn-cta-white">
+                    <i class="fas fa-play-circle"></i> Start Interview Now
+                </a>
+                <a href="/register" class="btn-cta-outline">
+                    <i class="fas fa-user-plus"></i> Create Free Account
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Footer ========== -->
+    <footer class="landing-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand">
+                        <i class="fas fa-brain"></i>
+                        <div>
+                            <span class="brand-name">MockMentor AI</span>
+                            <span class="brand-subtitle d-block">Smart Interview Portal</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">AI-powered interview preparation platform helping students and
+                        professionals ace their interviews.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/#features">Features</a></li>
+                        <li><a href="/#how-it-works">How It Works</a></li>
+                        <li><a href="/about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Support</h5>
+                    <ul class="footer-links">
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MockMentor AI. All rights reserved. Made with <i class="fas fa-heart text-danger"></i> for
+                    students everywhere.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Dark Mode Toggle (matches rest of site)
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('click', function () {
+                document.body.classList.toggle('dark-mode');
+                const icon = this.querySelector('i');
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    icon.classList.replace('fa-sun', 'fa-moon');
+                }
+            });
+        }
+
+        // Animate elements on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.value-card, .team-card, .timeline-content, .tech-pill').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(28px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

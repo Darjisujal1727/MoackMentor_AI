@@ -1,0 +1,1300 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MockMentor AI - Smart Interview Portal</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Style Sheet -->
+    <!-- Embedded css/landing.css -->
+    <style>
+        /* Landing Page Styles - MockMentor AI */
+
+        /* Root Variables */
+        :root {
+            --primary-blue: #2563EB;
+            --primary-blue-dark: #1D4ED8;
+            --primary-blue-light: #3B82F6;
+            --light-bg: #FFFFFF;
+            --light-bg-secondary: #F8FAFC;
+            --text-dark: #1E293B;
+            --text-gray: #64748B;
+            --gradient-start: #FFFFFF;
+            --gradient-end: #F0F9FF;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        /* Header Styles */
+        .landing-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar {
+            padding: 0;
+        }
+
+        .brand-title {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            line-height: 1;
+        }
+
+        .brand-subtitle-mini {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-logo i {
+            font-size: 2rem;
+            color: var(--primary-blue);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .navbar-toggler {
+            border: none;
+            color: var(--text-dark);
+        }
+
+        .navbar-toggler i {
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-gray) !important;
+            font-weight: 500;
+            padding: 0.75rem 1rem !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue) !important;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .btn-icon {
+            background: transparent;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            color: var(--text-dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-login {
+            border: 1px solid var(--primary-blue);
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            color: var(--primary-blue);
+        }
+
+        .btn-login:hover {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-get-started {
+            background: var(--primary-blue);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            color: white;
+        }
+
+        .btn-get-started:hover {
+            background: var(--primary-blue-dark);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 6rem 0 4rem;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            color: var(--primary-blue);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero-primary {
+            background: var(--primary-blue);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .btn-hero-primary:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-hero-secondary {
+            border: 2px solid var(--primary-blue);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            background: transparent;
+            color: var(--primary-blue);
+        }
+
+        .btn-hero-secondary:hover {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rating i {
+            color: #FBBF24;
+            font-size: 1rem;
+        }
+
+        .rating-text {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .trusted-text {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+        }
+
+        .user-avatars {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            border: 2px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+        }
+
+        .avatar-1 {
+            background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+        }
+
+        .avatar-2 {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+        }
+
+        .avatar-3 {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+        }
+
+        /* AI Interview Card */
+        .hero-visual {
+            position: relative;
+            z-index: 1;
+        }
+
+        .ai-interview-card {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .interview-header {
+            background: rgba(37, 99, 235, 0.05);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .interview-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .interview-type {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .interview-difficulty {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .interview-progress {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.25rem;
+        }
+
+        .interview-progress span {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .timer {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .interview-body {
+            padding: 1.5rem;
+        }
+
+        .ai-interviewer {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .interviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .interviewer-avatar i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .interviewer-message {
+            background: rgba(37, 99, 235, 0.1);
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            border-top-left-radius: 0;
+        }
+
+        .interviewer-message p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+
+        .user-input-area {
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid rgba(37, 99, 235, 0.15);
+        }
+
+        .input-display {
+            margin-bottom: 1rem;
+        }
+
+        .question-text {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            font-style: italic;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .audio-controls .btn-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 0.875rem;
+        }
+
+        .btn-record {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-record:hover {
+            background: var(--primary-blue-dark);
+        }
+
+        .listening-indicator {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: #10B981;
+        }
+
+        .listening-indicator i {
+            font-size: 0.5rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Trusted By Section */
+        .trusted-section {
+            padding: 3rem 0;
+            background: var(--light-bg-secondary);
+            border-top: 1px solid rgba(37, 99, 235, 0.1);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .trusted-heading {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .company-logos {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .company-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .company-logo:hover {
+            color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .company-logo i {
+            font-size: 1.5rem;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            color: var(--primary-blue);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-description {
+            color: var(--text-gray);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            transition: all 0.3s ease;
+            height: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-card h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* How It Works Section */
+        .how-it-works-section {
+            padding: 5rem 0;
+            background: var(--light-bg-secondary);
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .step-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+            margin: 0 auto 1rem;
+            color: white;
+        }
+
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background: rgba(37, 99, 235, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
+        .step-icon i {
+            font-size: 1.75rem;
+            color: var(--primary-blue);
+        }
+
+        .step-item h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .step-item p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .step-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            padding-top: 2rem;
+        }
+
+        /* Footer */
+        .landing-footer {
+            background: var(--light-bg-secondary);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand i {
+            font-size: 1.75rem;
+            color: var(--primary-blue);
+        }
+
+        .footer-brand .brand-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .footer-brand .brand-subtitle {
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-description {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .footer h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(12, 12, 214, 0.726);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .social-links a i {
+            font-size: 1.125rem;
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(37, 99, 235, 0.15);
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 991px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-section {
+                padding: 6rem 0 3rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            .steps-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .step-arrow {
+                transform: rotate(90deg);
+                padding-top: 0;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .header-actions {
+                flex-direction: column;
+                width: 100%;
+                align-items: stretch;
+            }
+
+            .header-actions .btn,
+            .header-actions .btn-icon {
+                width: 100%;
+            }
+
+            .company-logos {
+                gap: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .ai-interview-card {
+                margin-top: 2rem;
+            }
+
+            .hero-section {
+                padding: 4rem 0 2rem;
+            }
+
+            .interview-header,
+            .interview-body {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .hero-section {
+                padding: 5rem 0 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.875rem;
+            }
+
+            .rating-text,
+            .trusted-text {
+                font-size: 0.75rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .step-item {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="landing-header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <!-- Logo -->
+                    <a class="navbar-brand" href="/">
+                        <div class="brand-logo">
+                            <i class="fas fa-brain"></i>
+                            <div class="brand-text">
+                                <span class="brand-name">MockMentor AI</span>
+                                <span class="brand-subtitle">Smart Interview Portal</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Mobile Toggle -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <!-- Navigation Links -->
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/features">Features</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/how-it-works">How It Works</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/benefits">Benefits</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                        </ul>
+
+                        <!-- User Actions -->
+                        <div class="header-actions">
+                            <!-- <button class="btn-icon" id="darkModeToggle">
+                                <i class="fas fa-moon"></i>
+                            </button> -->
+                            {% if session.get('user_id') and user %}
+                            <a href="/dashboard" class="user-profile-widget me-3"
+                                style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; text-align: left;">
+                                <img src="{{ url_for('static', filename='images/ai_interviewer.png') }}" class="user-avatar-img"
+                                    style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255, 255, 255, 0.4);"
+                                    alt="Profile">
+                                <div class="user-meta" style="display: flex; flex-direction: column; line-height: 1.2;">
+                                    <span style="font-size: 0.9rem; font-weight: 600; color: rgb(0, 0, 0);">{{
+                                        user.full_name or 'Darji Sujal' }}</span>
+                                    <span
+                                        style="font-size: 0.72rem; color: rgba(0, 0, 0, 0.75); font-weight: 500;">{% if session.get('is_admin') or (user and user.email == 'admin@mockmentorai.com') %}Administrator{% else %}Candidate{% endif %}</span>
+                                </div>
+                                <i class="fas fa-chevron-down ms-1 text-white-50" style="font-size: 0.75rem;"></i>
+                            </a>
+                            <a href="/logout" class="btn btn-outline-light btn-login">Logout</a>
+                            {% else %}
+                            <a href="/login" class="btn btn-outline-light btn-login">Login</a>
+                            <a href="/register" class="btn btn-primary btn-get-started">Get Started</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left Content -->
+                <div class="col-lg-6 hero-content">
+                    <h6 class="hero-subtitle">AI-Powered Interview Platform</h6>
+                    <h1 class="hero-title">Ace Your Interview With Confidence</h1>
+                    <p class="hero-description">
+                        MockMentor AI helps you prepare, practice and improve with AI-powered mock interviews,
+                        real-time feedback and personalized reports.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="/interview" class="btn btn-primary btn-hero-primary">
+                            Start Your Interview <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                        <a href="#features" class="btn btn-outline-light btn-hero-secondary">Learn More</a>
+                    </div>
+
+                    <!-- Social Proof -->
+                    <div class="social-proof">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="rating-text">4.8/5</span>
+                        </div>
+                        <p class="trusted-text">Trusted by 10,000+ Students</p>
+                        <div class="user-avatars">
+                            <a class="avatar avatar-1" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a class="avatar avatar-2" href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a class="avatar avatar-3" href="https://github.com" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Content - AI Interview Simulation -->
+                <div class="col-lg-6 hero-visual">
+                    <div class="ai-interview-card">
+                        <div class="interview-header">
+                            <div class="interview-info">
+                                <span class="interview-type">Interview Type: Technical Interview</span>
+                                <span class="interview-difficulty">Difficulty: Medium</span>
+                            </div>
+                            <div class="interview-progress">
+                                <span>Question 1 of 10</span>
+                                <span class="timer">19:45</span>
+                            </div>
+                        </div>
+
+                        <div class="interview-body">
+                            <div class="ai-interviewer">
+                                <div class="interviewer-avatar">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="interviewer-message">
+                                    <p>Hello! I'm your AI Interviewer. Let's start with your first question.</p>
+                                </div>
+                            </div>
+
+                            <div class="user-input-area">
+                                <div class="input-display">
+                                    <span class="question-text">Can you tell me something about yourself?</span>
+                                </div>
+                                <div class="audio-controls">
+                                    <button class="btn-icon"><i class="fas fa-volume-up"></i></button>
+                                    <button class="btn-icon btn-record"><i class="fas fa-microphone"></i></button>
+                                    <button class="btn-icon"><i class="fas fa-cog"></i></button>
+                                    <span class="listening-indicator"><i class="fas fa-circle"></i> Listening...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By Section -->
+    <section class="trusted-section">
+        <div class="container">
+            <p class="trusted-heading">Crack your next interview</p>
+            <div class="company-logos">
+                    <a class="company-logo" href="https://about.google/careers/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-google"></i>
+                    <span>Google</span>
+                </a>
+                <a class="company-logo" href="https://careers.microsoft.com/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-microsoft"></i>
+                    <span>Microsoft</span>
+                </a>
+                <a class="company-logo" href="https://www.amazon.jobs/en/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-amazon"></i>
+                    <span>Amazon</span>
+                </a>
+                <a class="company-logo" href="https://www.infosys.com/careers.html" target="_blank" rel="noopener noreferrer">
+                    <span>Infosys</span>
+                </a>
+                <a class="company-logo" href="https://www.tcs.com/careers" target="_blank" rel="noopener noreferrer">
+                    <span>TCS</span>
+                </a>
+                <a class="company-logo" href="https://careers.wipro.com/" target="_blank" rel="noopener noreferrer">
+                    <span>Wipro</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h6 class="section-subtitle">FEATURES</h6>
+                <h2 class="section-title">Everything You Need to Succeed</h2>
+                <p class="section-description">
+                    Our comprehensive platform provides all the tools you need to master your interview skills
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h4>Resume Analysis</h4>
+                        <p>Upload your resume and get AI-powered analysis with skill extraction.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h4>AI Mock Interviews</h4>
+                        <p>Practice with AI interviewer that asks role-specific questions.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4>Real-time Feedback</h4>
+                        <p>Get instant feedback on your answers, communication and confidence.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h4>Detailed Reports</h4>
+                        <p>Comprehensive reports with scores, strengths and areas of improvement.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h4>Multiple Domains</h4>
+                        <p>Technical, HR, Aptitude and more - all in one platform.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Track Progress</h4>
+                        <p>Track your progress over time and see how you improve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h6 class="section-subtitle">HOW IT WORKS</h6>
+                <h2 class="section-title">Simple Steps to Get Started</h2>
+                <p class="section-description">
+                    Get started with MockMentor AI in just 4 simple steps
+                </p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h4>Upload / Add Details</h4>
+                    <p>Upload your resume or add your skills and education manually.</p>
+                </div>
+
+                <div class="step-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h4>Choose Interview & Level</h4>
+                    <p>Select interview type and difficulty level (Easy, Medium, Hard).</p>
+                </div>
+
+                <div class="step-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <h4>Start Interview</h4>
+                    <p>Answer questions from our AI interviewer in real-time.</p>
+                </div>
+
+                <div class="step-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h4>Get Report & Improve</h4>
+                    <p>Receive detailed report and improve your weak areas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="landing-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer-brand">
+                        <i class="fas fa-brain"></i>
+                        <div>
+                            <span class="brand-name">MockMentor AI</span>
+                            <span class="brand-subtitle">Smart Interview Portal</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        AI-powered interview preparation platform helping students and professionals ace their
+                        interviews.
+                    </p>
+                </div>
+                <div class="col-lg-2">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="/features">Features</a></li>
+                        <li><a href="/how-it-works">How It Works</a></li>
+                        <li><a href="/about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5>Support</h5>
+                    <ul class="footer-links">
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MockMentor AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom Page Script -->
+    <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
+</body>
+
+</html>

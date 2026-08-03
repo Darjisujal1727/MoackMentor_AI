@@ -1,0 +1,575 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benefits - MockMentor AI | Smart Interview Portal</title>
+    <meta name="description" content="Discover the benefits of using MockMentor AI — boost your confidence, get AI feedback, land your dream job faster with smart mock interview practice.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+        :root {
+
+             --primary-blue:#2563EB; 
+             --primary-blue-dark:#1D4ED8; 
+             --primary-blue-light:#3B82F6; 
+             --light-bg:#FFFFFF; 
+             --light-bg-secondary:#F8FAFC; 
+             --text-dark:#1E293B; 
+             --text-gray:#64748B; 
+             --border-color:#E2E8F0; 
+            }
+        
+        * { 
+            margin:0; 
+            padding:0; 
+            box-sizing:border-box; 
+        }
+   
+        body { 
+            font-family:'Outfit','Segoe UI',sans-serif; 
+            background:linear-gradient(135deg,#fff 0%,#f0f9ff 100%); 
+            color:var(--text-dark);
+            min-height:100vh; 
+            overflow-x:hidden; 
+        }
+
+        a { 
+            text-decoration:none; 
+            color:inherit; 
+            transition:all 0.3s ease; 
+        }
+
+        /* NAV */
+        .landing-header {
+             background:rgba(255,255,255,0.96); 
+             backdrop-filter:blur(10px); 
+             padding:1rem 0; 
+             position:fixed; 
+             width:100%; 
+             top:0; 
+             z-index:1000; 
+             border-bottom:1px solid rgba(37,99,235,0.1); 
+             box-shadow:0 2px 10px rgba(0,0,0,0.05); 
+            }
+
+        .navbar { 
+            padding:0; 
+        } 
+        
+        .navbar-brand { 
+            padding:0; 
+        }
+        
+        .brand-logo { 
+            display:flex; 
+            align-items:center; 
+            gap:0.75rem; 
+        }
+        
+        .brand-logo i { 
+            font-size:2rem; 
+            color:var(--primary-blue); 
+        }
+
+        .brand-text { 
+            display:flex; 
+            flex-direction:column;
+         }
+        
+        .brand-name { 
+            font-size:1.5rem; 
+            font-weight:700; 
+            color:var(--text-dark); 
+            line-height:1.2; 
+        }
+
+        .brand-subtitle { 
+            font-size:0.72rem;
+            color:var(--text-gray); 
+            text-transform:uppercase; 
+            letter-spacing:0.1em; 
+        }
+
+        .navbar-toggler { 
+            border:none; 
+            color:var(--text-dark); 
+        } 
+        
+        .navbar-toggler i {
+             font-size:1.5rem; 
+        }
+
+        .nav-link { 
+            color:var(--text-gray)!important; 
+            font-weight:500; 
+            padding:0.75rem 1rem!important; 
+        }
+
+        .nav-link:hover,.nav-link.active-page { 
+            color:var(--primary-blue)!important; 
+        }
+
+        .header-actions { 
+            display:flex; 
+            align-items:center; 
+            gap:1rem; 
+        }
+
+        .btn-icon { 
+            background:transparent; 
+            border:1px solid rgba(37,99,235,0.2); 
+            color:var(--text-dark); 
+            width:40px; 
+            height:40px; 
+            border-radius:50%; 
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            transition:all 0.3s; 
+            cursor:pointer; 
+        }
+
+        .btn-icon:hover {
+             background:var(--primary-blue);
+             border-color:var(--primary-blue); 
+             color:white; 
+        }
+
+        .btn-login { 
+             border:1px solid var(--primary-blue); 
+             padding:0.5rem 1.5rem; 
+             border-radius:8px; 
+             font-weight:500; 
+             color:var(--primary-blue)!important; 
+        }
+        
+        .btn-login:hover { 
+            background:var(--primary-blue); 
+            color:white!important; 
+        }
+
+        .btn-get-started { 
+            background:var(--primary-blue); 
+            border:none; 
+            padding:0.5rem 1.5rem; 
+            border-radius:8px; 
+            font-weight:500; 
+            color:white!important; 
+        }
+
+        .btn-get-started:hover { 
+            background:var(--primary-blue-dark); 
+            color:white!important; 
+        }
+
+        /* HERO */
+        
+        .page-hero { 
+            padding:9rem 0 5rem; 
+            background:linear-gradient(160deg,#fff 0%,#eff6ff 50%,#f0f9ff 100%); 
+            text-align:center; 
+            position:relative; 
+            overflow:hidden; 
+        }
+        
+        .page-hero::before { 
+            content:''; 
+            position:absolute; 
+            width:550px; 
+            height:550px; 
+            border-radius:50%; 
+            background:radial-gradient(circle,rgba(37,99,235,0.07) 0%,transparent 70%); 
+            bottom:-100px; right:-80px; 
+        }
+
+        .hero-badge { 
+            display:inline-flex; 
+            align-items:center; 
+            gap:8px; 
+            background:rgba(37,99,235,0.1); 
+            border:1px solid rgba(37,99,235,0.2); 
+            color:var(--primary-blue); 
+            font-size:0.82rem; 
+            font-weight:600; 
+            padding:6px 16px; 
+            border-radius:50px; 
+            margin-bottom:1.25rem; 
+            text-transform:uppercase; 
+            letter-spacing:0.04em; 
+        }
+
+        .page-hero h1 { 
+            font-size:3.2rem; 
+            font-weight:800; 
+            line-height:1.2; 
+            margin-bottom:1.25rem; 
+            background:linear-gradient(135deg,var(--text-dark) 0%,var(--primary-blue) 100%); 
+            -webkit-background-clip:text; 
+            -webkit-text-fill-color:transparent; 
+            background-clip:text; 
+        }
+
+        .page-hero p.lead { 
+            font-size:1.15rem; 
+            color:var(--text-gray); 
+            max-width:600px;
+            margin:0 auto; 
+            line-height:1.7;
+        }
+
+        /* SECTION HEADER */
+        .section-label { color:var(--primary-blue); font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:0.75rem; }
+        .section-title { font-size:2.4rem; font-weight:700; color:var(--text-dark); margin-bottom:1rem; }
+        .section-desc { color:var(--text-gray); font-size:1.05rem; max-width:600px; margin:0 auto; line-height:1.7; }
+        .section-header { text-align:center; margin-bottom:4rem; }
+
+        /* MAIN BENEFIT CARDS */
+        .benefits-main { padding:5rem 0; background:white; }
+        .benefit-card { background:white; border-radius:20px; border:1px solid rgba(37,99,235,0.1); padding:2.25rem 2rem; transition:all 0.35s ease; height:100%; box-shadow:0 4px 15px rgba(0,0,0,0.04); position:relative; overflow:hidden; }
+        .benefit-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:linear-gradient(180deg,var(--primary-blue),var(--primary-blue-dark)); border-radius:4px 0 0 4px; transform:scaleY(0); transform-origin:top; transition:transform 0.35s ease; }
+        .benefit-card:hover { transform:translateY(-7px); box-shadow:0 25px 50px rgba(37,99,235,0.14); border-color:rgba(37,99,235,0.25); }
+        .benefit-card:hover::before { transform:scaleY(1); }
+        .benefit-icon { width:68px; height:68px; border-radius:16px; background:linear-gradient(135deg,var(--primary-blue),var(--primary-blue-dark)); display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem; box-shadow:0 8px 20px rgba(37,99,235,0.25); }
+        .benefit-icon i { font-size:1.6rem; color:white; }
+        .benefit-card h4 { font-size:1.15rem; font-weight:700; color:var(--text-dark); margin-bottom:0.75rem; }
+        .benefit-card p { color:var(--text-gray); font-size:0.93rem; line-height:1.65; margin:0; }
+
+        /* WHO BENEFITS */
+        .who-section { padding:5rem 0; background:var(--light-bg-secondary); }
+        .persona-card { background:white; border-radius:20px; border:1px solid rgba(37,99,235,0.1); padding:2.5rem 2rem; text-align:center; height:100%; transition:all 0.3s ease; box-shadow:0 4px 15px rgba(0,0,0,0.04); }
+        .persona-card:hover { transform:translateY(-6px); border-color:var(--primary-blue); box-shadow:0 20px 40px rgba(37,99,235,0.13); }
+        .persona-avatar { width:80px; height:80px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem; font-size:2rem; color:white; box-shadow:0 8px 20px rgba(37,99,235,0.25); }
+        .persona-card h5 { font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:0.5rem; }
+        .persona-card p { color:var(--text-gray); font-size:0.9rem; line-height:1.6; margin-bottom:1.25rem; }
+        .persona-pills { display:flex; flex-wrap:wrap; justify-content:center; gap:6px; }
+        .persona-pill { background:rgba(37,99,235,0.08); border:1px solid rgba(37,99,235,0.2); color:var(--primary-blue); font-size:0.75rem; font-weight:600; padding:4px 12px; border-radius:50px; }
+
+        /* COMPARISON */
+        .compare-section { padding:5rem 0; background:white; }
+        .compare-table { border-radius:20px; overflow:hidden; border:1px solid rgba(37,99,235,0.12); box-shadow:0 8px 30px rgba(0,0,0,0.06); }
+        .compare-head { display:grid; grid-template-columns:2fr 1fr 1fr; background:linear-gradient(135deg,var(--primary-blue),var(--primary-blue-dark)); color:white; }
+        .compare-head-cell { padding:1.25rem 1.5rem; font-weight:700; font-size:0.95rem; }
+        .compare-head-cell:not(:first-child) { text-align:center; }
+        .compare-row { display:grid; grid-template-columns:2fr 1fr 1fr; border-bottom:1px solid rgba(37,99,235,0.07); }
+        .compare-row:last-child { border-bottom:none; }
+        .compare-row:nth-child(even) { background:var(--light-bg-secondary); }
+        .compare-cell { padding:1rem 1.5rem; font-size:0.9rem; color:var(--text-dark); font-weight:500; display:flex; align-items:center; }
+        .compare-cell:not(:first-child) { justify-content:center; }
+        .yes-icon { color:#10b981; font-size:1.1rem; }
+        .no-icon { color:#ef4444; font-size:1.1rem; }
+        .partial-icon { color:#f59e0b; font-size:1.1rem; }
+
+        /* TESTIMONIAL STRIP */
+        .testimonial-section { padding:5rem 0; background:var(--light-bg-secondary); }
+        .tcard { background:white; border-radius:18px; border:1px solid rgba(37,99,235,0.1); padding:2rem; height:100%; box-shadow:0 4px 15px rgba(0,0,0,0.04); transition:all 0.3s ease; }
+        .tcard:hover { transform:translateY(-5px); box-shadow:0 20px 40px rgba(37,99,235,0.12); }
+        .tcard-stars { color:#fbbf24; font-size:0.9rem; margin-bottom:0.75rem; }
+        .tcard-text { color:var(--text-gray); font-size:0.92rem; line-height:1.7; font-style:italic; margin-bottom:1.25rem; }
+        .tcard-author { display:flex; align-items:center; gap:12px; }
+        .tcard-avatar { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:1.1rem; flex-shrink:0; }
+        .tcard-name { font-weight:700; font-size:0.92rem; color:var(--text-dark); line-height:1.2; }
+        .tcard-role { font-size:0.78rem; color:var(--text-gray); }
+
+        /* CTA */
+        .cta-section { padding:6rem 0; background:linear-gradient(135deg,var(--primary-blue) 0%,var(--primary-blue-dark) 100%); text-align:center; position:relative; overflow:hidden; }
+        .cta-section::before { content:''; position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(255,255,255,0.05); top:-150px; right:-80px; }
+        .cta-section h2 { font-size:2.5rem; font-weight:800; color:white; margin-bottom:1rem; }
+        .cta-section p { color:rgba(255,255,255,0.85); font-size:1.05rem; margin-bottom:2.5rem; max-width:500px; margin-left:auto; margin-right:auto; line-height:1.65; }
+        .btn-cta-white { background:white; color:var(--primary-blue); border:none; padding:1rem 2.25rem; border-radius:12px; font-weight:700; font-size:1rem; display:inline-flex; align-items:center; gap:8px; transition:all 0.3s; margin:6px; }
+        .btn-cta-white:hover { background:var(--light-bg-secondary); transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,0.2); }
+        .btn-cta-outline { background:transparent; color:white; border:2px solid rgba(255,255,255,0.6); padding:1rem 2.25rem; border-radius:12px; font-weight:700; font-size:1rem; display:inline-flex; align-items:center; gap:8px; transition:all 0.3s; margin:6px; }
+        .btn-cta-outline:hover { background:rgba(255,255,255,0.15); border-color:white; color:white; }
+
+        /* FOOTER */
+        .landing-footer { background:var(--light-bg-secondary); padding:4rem 0 2rem; border-top:1px solid rgba(37,99,235,0.1); }
+        .footer-brand { display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem; }
+        .footer-brand i { font-size:1.75rem; color:var(--primary-blue); }
+        .footer-brand .brand-name { font-size:1.25rem; font-weight:700; color:var(--text-dark); }
+        .footer-brand .brand-subtitle { font-size:0.7rem; color:var(--text-gray); text-transform:uppercase; letter-spacing:0.1em; }
+        .footer-description { color:var(--text-gray); font-size:0.9rem; line-height:1.6; max-width:300px; }
+        .landing-footer h5 { font-size:1rem; font-weight:600; margin-bottom:1.5rem; color:var(--text-dark); }
+        .footer-links { list-style:none; padding:0; }
+        .footer-links li { margin-bottom:0.75rem; }
+        .footer-links a { color:var(--text-gray); font-size:0.9rem; }
+        .footer-links a:hover { color:var(--primary-blue); }
+        .social-links { display:flex; gap:1rem; }
+        .social-links a { width:40px; height:40px; border-radius:50%; background:rgba(12,12,214,0.726); display:flex; align-items:center; justify-content:center; border:1px solid rgba(37,99,235,0.3); transition:all 0.3s; color:white; }
+        .social-links a:hover { background:var(--primary-blue); }
+        .footer-bottom { margin-top:3rem; padding-top:2rem; border-top:1px solid rgba(37,99,235,0.15); text-align:center; }
+        .footer-bottom p { color:var(--text-gray); font-size:0.875rem; margin:0; }
+
+        @media(max-width:991px){ .page-hero h1{font-size:2.4rem;} .section-title{font-size:2rem;} .compare-head,.compare-row{grid-template-columns:1.5fr 1fr 1fr;} }
+        @media(max-width:767px){ .page-hero{padding:7rem 0 4rem;} .page-hero h1{font-size:2rem;} .compare-head,.compare-row{grid-template-columns:1fr 1fr 1fr;} .compare-head-cell:first-child,.compare-cell:first-child{display:none;} }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(28px);} to{opacity:1;transform:translateY(0);} }
+        .anim{animation:fadeInUp 0.7s ease both;} .d1{animation-delay:0.1s;} .d2{animation-delay:0.2s;}
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="landing-header">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/"><div class="brand-logo"><i class="fas fa-brain"></i><div class="brand-text"><span class="brand-name">MockMentor AI</span><span class="brand-subtitle">Smart Interview Portal</span></div></div></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><i class="fas fa-bars"></i></button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/features">Features</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/how-it-works">How It Works</a></li>
+                        <li class="nav-item"><a class="nav-link active-page" href="/benefits">Benefits</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                    </ul>
+                    <div class="header-actions">
+                        <!-- <button class="btn-icon" id="darkModeToggle"><i class="fas fa-moon"></i></button> -->
+                        {% if session.get('user_id') %}
+                        <a href="/dashboard" class="btn btn-outline-light btn-login">Dashboard</a>
+                        <a href="/logout" class="btn btn-outline-light btn-login">Logout</a>
+                        {% else %}
+                        <a href="/login" class="btn btn-outline-light btn-login">Login</a>
+                        <a href="/register" class="btn btn-primary btn-get-started">Get Started</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+    <div class="container position-relative">
+        <div class="anim"><span class="hero-badge"><i class="fas fa-trophy"></i> Why MockMentor AI</span></div>
+        <h1 class="anim d1">The Benefits of Practising<br>Smarter, Not Harder</h1>
+        <p class="lead anim d2">MockMentor AI doesn't just prepare you for interviews — it transforms how you think, speak and present yourself. Here's what you gain.</p>
+    </div>
+</section>
+
+<!-- MAIN BENEFITS -->
+<section class="benefits-main">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">CORE BENEFITS</p>
+            <h2 class="section-title">What You Gain With MockMentor AI</h2>
+            <p class="section-desc">Real outcomes from real practice. These benefits are what thousands of students experience using MockMentor AI.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Skyrocket Your Confidence</h4>
+                    <p>Repetitive practice in a realistic environment removes interview anxiety. You walk into real interviews feeling prepared, calm, and in control.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>Instant Actionable Feedback</h4>
+                    <p>Stop guessing what went wrong. After every answer, you receive a score, star rating, and the ideal answer — so you know exactly what to improve.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-clock"></i></div>
+                    <h4>Practice on Your Own Schedule</h4>
+                    <p>No need to book time with a mentor or wait for a practice partner. MockMentor AI is available 24/7 — practice at midnight if you want to.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-comments"></i></div>
+                    <h4>Improve Your Communication</h4>
+                    <p>The live performance tracker monitors your speech speed, voice clarity, and communication quality — helping you become a more articulate speaker.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-bullseye"></i></div>
+                    <h4>Targeted Weak Area Focus</h4>
+                    <p>Your dashboard highlights which subjects you score lowest on. Focus your next session exactly where you need improvement the most.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h4>Learn While Practising</h4>
+                    <p>Every session shows you the ideal answer to each question. You don't just practice — you actively learn the best way to answer technical questions.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-rupee-sign"></i></div>
+                    <h4>Zero Cost, Full Access</h4>
+                    <p>MockMentor AI is completely free. No credit card, no premium tier required. Every student deserves world-class interview prep regardless of their budget.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-file-pdf"></i></div>
+                    <h4>Shareable Progress Reports</h4>
+                    <p>Download PDF reports to share with mentors, professors, or career counselors. Use your scores as evidence of growth in job applications.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-user-graduate"></i></div>
+                    <h4>Built for Students & Freshers</h4>
+                    <p>Designed with college students and fresh graduates in mind. Resume-based questions mean even zero-experience candidates get relevant practice.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHO BENEFITS -->
+<section class="who-section">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">WHO IT'S FOR</p>
+            <h2 class="section-title">MockMentor AI is Perfect For</h2>
+            <p class="section-desc">Whether you're a fresher or a professional, MockMentor AI adapts to your needs.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="persona-card">
+                    <div class="persona-avatar" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);"><i class="fas fa-user-graduate"></i></div>
+                    <h5>College Students</h5>
+                    <p>Prepare for campus placements with domain-specific practice before companies visit your college.</p>
+                    <div class="persona-pills"><span class="persona-pill">Placements</span><span class="persona-pill">Freshers</span><span class="persona-pill">Campus</span></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="persona-card">
+                    <div class="persona-avatar" style="background:linear-gradient(135deg,#10b981,#059669);"><i class="fas fa-briefcase"></i></div>
+                    <h5>Job Seekers</h5>
+                    <p>Get interview-ready fast with targeted practice sessions and immediately actionable feedback.</p>
+                    <div class="persona-pills"><span class="persona-pill">Job Hunt</span><span class="persona-pill">Tech Roles</span><span class="persona-pill">HR Rounds</span></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="persona-card">
+                    <div class="persona-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706);"><i class="fas fa-exchange-alt"></i></div>
+                    <h5>Career Switchers</h5>
+                    <p>Pivoting to a new tech domain? Practice questions in your target field to build fluency quickly.</p>
+                    <div class="persona-pills"><span class="persona-pill">Re-skilling</span><span class="persona-pill">New Domain</span><span class="persona-pill">Transition</span></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="persona-card">
+                    <div class="persona-avatar" style="background:linear-gradient(135deg,#a855f7,#7c3aed);"><i class="fas fa-rocket"></i></div>
+                    <h5>Experienced Pros</h5>
+                    <p>Sharpen your articulation and brush up on fundamentals before applying for senior or lead roles.</p>
+                    <div class="persona-pills"><span class="persona-pill">Senior Roles</span><span class="persona-pill">Leadership</span><span class="persona-pill">Upskilling</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="compare-section">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">COMPARISON</p>
+            <h2 class="section-title">MockMentor AI vs. Traditional Prep</h2>
+            <p class="section-desc">See how MockMentor AI stacks up against traditional interview preparation methods.</p>
+        </div>
+        <div class="compare-table">
+            <div class="compare-head">
+                <div class="compare-head-cell">Feature</div>
+                <div class="compare-head-cell"><i class="fas fa-brain me-1"></i> MockMentor AI</div>
+                <div class="compare-head-cell"><i class="fas fa-book me-1"></i> Traditional</div>
+            </div>
+            <div class="compare-row"><div class="compare-cell">Available 24/7</div><div class="compare-cell"><i class="fas fa-check-circle yes-icon"></i></div><div class="compare-cell"><i class="fas fa-times-circle no-icon"></i></div></div>
+            <div class="compare-row"><div class="compare-cell">Instant AI Feedback</div><div class="compare-cell"><i class="fas fa-check-circle yes-icon"></i></div><div class="compare-cell"><i class="fas fa-times-circle no-icon"></i></div></div>
+            <div class="compare-row"><div class="compare-cell">Voice Response Support</div><div class="compare-cell"><i class="fas fa-check-circle yes-icon"></i></div><div class="compare-cell"><i class="fas fa-times-circle no-icon"></i></div></div>
+            <div class="compare-row"><div class="compare-cell">Resume-based Questions</div><div class="compare-cell"><i class="fas fa-check-circle yes-icon"></i></div><div class="compare-cell"><i class="fas fa-minus-circle partial-icon"></i></div></div>
+            <div class="compare-row"><div class="compare-cell">Downloadable PDF Reports</div><div class="compare-cell"><i class="fas fa-check-circle yes-icon"></i></div><div class="compare-cell"><i class="fas fa-times-circle no-icon"></i></div></div>
+            <div class="compare-row"><div class="compare-cell">Progress Tracking Dashboard</div><div class="compare-cell"><i class="fas fa-check-circle yes-icon"></i></div><div class="compare-cell"><i class="fas fa-times-circle no-icon"></i></div></div>
+            <div class="compare-row"><div class="compare-cell">Multiple Difficulty Levels</div><div class="compare-cell"><i class="fas fa-check-circle yes-icon"></i></div><div class="compare-cell"><i class="fas fa-minus-circle partial-icon"></i></div></div>
+            <div class="compare-row"><div class="compare-cell">Completely Free</div><div class="compare-cell"><i class="fas fa-check-circle yes-icon"></i></div><div class="compare-cell"><i class="fas fa-times-circle no-icon"></i></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonial-section">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">STUDENT STORIES</p>
+            <h2 class="section-title">Hear From Real Users</h2>
+            <p class="section-desc">Thousands of students have already transformed their interview performance with MockMentor AI.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="tcard">
+                    <div class="tcard-stars">★★★★★</div>
+                    <p class="tcard-text">"I used MockMentor AI for 2 weeks before my campus interview. The AI feedback helped me understand exactly where my answers were weak. I got placed in my dream company!"</p>
+                    <div class="tcard-author"><div class="tcard-avatar" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);">A</div><div><div class="tcard-name">Ananya Sharma</div><div class="tcard-role">Software Engineer, Infosys</div></div></div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="tcard">
+                    <div class="tcard-stars">★★★★★</div>
+                    <p class="tcard-text">"The voice recognition feature is incredible. I could practice answering out loud and see my response transcribed in real time. It genuinely simulates a real interview."</p>
+                    <div class="tcard-author"><div class="tcard-avatar" style="background:linear-gradient(135deg,#10b981,#059669);">R</div><div><div class="tcard-name">Rahul Gupta</div><div class="tcard-role">Frontend Dev, TCS</div></div></div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="tcard">
+                    <div class="tcard-stars">★★★★☆</div>
+                    <p class="tcard-text">"As someone switching from non-IT to IT, I had zero real-world experience. MockMentor AI gave me a structured way to learn and practice. The PDF report is really professional."</p>
+                    <div class="tcard-author"><div class="tcard-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706);">P</div><div><div class="tcard-name">Priya Mehta</div><div class="tcard-role">Career Switcher → Dev</div></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container position-relative">
+        <h2>Start Experiencing These Benefits Today</h2>
+        <p>Join thousands of students already preparing smarter. No cost, no barrier — just results.</p>
+        <div>
+            <a href="/interview" class="btn-cta-white"><i class="fas fa-play-circle"></i> Start Interview Now</a>
+            <a href="/register" class="btn-cta-outline"><i class="fas fa-user-plus"></i> Create Free Account</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="landing-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4"><div class="footer-brand"><i class="fas fa-brain"></i><div><span class="brand-name">MockMentor AI</span><span class="brand-subtitle d-block">Smart Interview Portal</span></div></div><p class="footer-description">AI-powered interview preparation platform helping students and professionals ace their interviews.</p></div>
+            <div class="col-lg-2 col-md-4 mb-4"><h5>Quick Links</h5><ul class="footer-links"><li><a href="/">Home</a></li><li><a href="/features">Features</a></li><li><a href="/how-it-works">How It Works</a></li><li><a href="/about">About Us</a></li></ul></div>
+            <div class="col-lg-2 col-md-4 mb-4"><h5>Support</h5><ul class="footer-links"><li><a href="/contact">Contact Us</a></li><li><a href="/benefits">Benefits</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul></div>
+            <div class="col-lg-4 col-md-4 mb-4"><h5>Connect With Us</h5><div class="social-links"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2024 MockMentor AI. All rights reserved. Made with <i class="fas fa-heart text-danger"></i> for students everywhere.</p></div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('darkModeToggle').addEventListener('click', function(){
+        document.body.classList.toggle('dark-mode');
+        const icon = this.querySelector('i');
+        icon.classList.toggle('fa-moon'); icon.classList.toggle('fa-sun');
+    });
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }});
+    },{threshold:0.1});
+    document.querySelectorAll('.benefit-card,.persona-card,.tcard').forEach(el => {
+        el.style.opacity='0'; el.style.transform='translateY(24px)'; el.style.transition='opacity 0.6s ease,transform 0.6s ease';
+        observer.observe(el);
+    });
+</script>
+</body>
+</html>

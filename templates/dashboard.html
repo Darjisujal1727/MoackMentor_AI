@@ -1,0 +1,1037 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MockMentor AI - Candidate Dashboard</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Styling -->
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-main: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            --gradient-start: #4f46e5;
+            --gradient-end: #7c3aed;
+        }
+
+        body.dark-mode {
+            --bg-main: #0f172a;
+            --card-bg: #1e293b;
+            --text-dark: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Navbar */
+        .dashboard-navbar {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.75rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .brand-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .brand-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: #eff6ff;
+            border-radius: 10px;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .brand-title {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            line-height: 1;
+        }
+
+        .brand-subtitle-mini {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar-links-center {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 1.75rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-links-center a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .navbar-links-center a:hover {
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 991px) {
+            .navbar-links-center {
+                display: none;
+            }
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .btn-icon {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .btn-icon:hover {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 18px;
+            height: 18px;
+            background-color: #ef4444;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.68rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--card-bg);
+        }
+
+        .user-profile-widget {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .user-avatar-img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+        }
+
+        .user-meta {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .user-role-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        /* Dashboard Container */
+        .dashboard-container {
+            max-width: 100%;
+            margin: 2.5rem auto;
+            padding: 0 3.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* Welcome Heading */
+        .welcome-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .welcome-title {
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .welcome-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stats-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+        }
+
+        .stats-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stats-label {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .stats-icon-box {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .stats-value {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-trend {
+            font-size: 0.78rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .trend-up {
+            color: #10b981;
+        }
+
+        .trend-neutral {
+            color: var(--text-muted);
+        }
+
+        /* Stats Colors based on design */
+        .stats-icon-blue {
+            background-color: #eff6ff;
+            color: #3b82f6;
+        }
+
+        .stats-icon-green {
+            background-color: #ecfdf5;
+            color: #10b981;
+        }
+
+        .stats-icon-orange {
+            background-color: #fff7ed;
+            color: #f97316;
+        }
+
+        .stats-icon-red {
+            background-color: #fef2f2;
+            color: #ef4444;
+        }
+
+        .dashboard-row-secondary {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card-panel {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.75rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .card-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-panel-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+        }
+
+        .card-panel-title i {
+            color: #6366f1;
+        }
+
+        .upcoming-interview-body {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .upcoming-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .upcoming-meta-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .upcoming-meta-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .meta-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .meta-val {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .badge-pill-green {
+            background-color: #ecfdf5;
+            color: #10b981;
+            padding: 0.15rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .btn-start-now {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            border: none;
+            padding: 0.85rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+            transition: all 0.2s ease;
+            margin-top: 0.5rem;
+        }
+
+        .btn-start-now:hover {
+            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
+            transform: translateY(-1px);
+            color: white;
+        }
+
+        /* Chart Select Dropdown */
+        .chart-select {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-dark);
+            padding: 0.35rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+        }
+
+        /* SVG Chart Path Styles */
+        .chart-svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .chart-grid-line {
+            stroke: var(--border-color);
+            stroke-width: 1;
+            stroke-dasharray: 4, 4;
+        }
+
+        .chart-axis-label {
+            font-size: 9px;
+            font-weight: 600;
+            fill: var(--text-muted);
+        }
+
+        .chart-line-path {
+            stroke: #4f46e5;
+            stroke-width: 3;
+            fill: none;
+        }
+
+        .chart-dot-point {
+            fill: #4f46e5;
+            stroke: var(--card-bg);
+            stroke-width: 2.5;
+            cursor: pointer;
+            transition: r 0.15s ease;
+        }
+
+        .chart-dot-point:hover {
+            r: 7;
+        }
+
+        .chart-value-label {
+            font-size: 10px;
+            font-weight: 700;
+            fill: var(--text-dark);
+            text-anchor: middle;
+        }
+
+        /* Recent Interviews Card */
+        .recent-interviews-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .recent-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.75rem;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .custom-table th {
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            padding: 0.85rem 1rem;
+            text-align: left;
+            border-bottom: 1.5px solid var(--border-color);
+        }
+
+        .custom-table td {
+            padding: 1.1rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .custom-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge-diff {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 0.72rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 8px;
+        }
+
+        .badge-diff-easy {
+            background-color: #ecfdf5;
+            color: #10b981;
+        }
+
+        .badge-diff-medium {
+            background-color: #fff7ed;
+            color: #f97316;
+        }
+
+        .badge-diff-hard {
+            background-color: #fef2f2;
+            color: #ef4444;
+        }
+
+        .btn-view-report {
+            border: 1.5px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: transparent;
+            border-radius: 8px;
+            padding: 0.4rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-view-report:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-logout {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1.5px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 0.45rem 1.1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-logout:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            color: var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .dashboard-footer {
+            border-top: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Dashboard Navbar -->
+    <header class="dashboard-navbar">
+        <div class="d-flex justify-content-between align-items-center">
+            <!-- Brand Logo -->
+            <a class="brand-logo-container" href="/">
+                <div class="brand-logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div>
+                    <span class="brand-title">MockMentor AI</span>
+                    <div class="brand-subtitle-mini">AI Candidate Workspace</div>
+                </div>
+            </a>
+
+            <!-- Navigation Links in Center -->
+            <ul class="navbar-links-center">
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/how-it-works">How It Works</a></li>
+                <li><a href="/benefits">Benefits</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+
+            <!-- Navigation Actions -->
+            <div class="nav-actions">
+                <!-- Theme Toggle Button -->
+                <!-- <button class="btn-icon" id="darkModeToggle" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i>
+                </button> -->
+
+                <!-- Notification Bell -->
+                <div class="btn-icon" title="Notifications">
+                    <i class="far fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+
+                <!-- User Profile Widget -->
+                <a href="/dashboard" class="user-profile-widget" title="Your profile">
+                    <img src="{{ url_for('static', filename='images/ai_interviewer.png') }}" class="user-avatar-img"
+                        alt="User Profile Image">
+                    <div class="user-meta d-none d-sm-flex">
+                        <span>{{ user.full_name or 'Candidate User' }}</span>
+                        <span class="user-role-label">{% if session.get('is_admin') or (user and user.email == 'admin@mockmentorai.com') %}Administrator{% else %}Candidate{% endif %}</span>
+                    </div>
+                    <i class="fas fa-chevron-down ms-1 text-muted" style="font-size: 0.75rem;"></i>
+                </a>
+
+                <!-- Logout Button -->
+                <a href="/logout" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Content Wrapper -->
+    <main class="dashboard-container">
+
+        <!-- Welcome Heading -->
+        <div class="welcome-section d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <div>
+                <h1 class="welcome-title">Welcome, {{ (user.full_name or '').split(' ')[0] or 'Sujal' }}! 👋</h1>
+                <p class="welcome-subtitle mb-0">Track your interview progress and improve your skills.</p>
+                <div id="dashboardSkillsWrapper" class="mt-2 d-none align-items-center flex-wrap gap-2">
+                    <span style="font-size: 0.82rem; font-weight: 600; color: #64748b;">Profile Skills:</span>
+                    <div id="dashboardSkillsList" class="d-flex flex-wrap gap-1"></div>
+                </div>
+            </div>
+            <div>
+                <a href="/edit-profile" class="btn-edit-profile"
+                    style="border: 1.5px solid var(--primary-blue); color: var(--primary-blue); font-weight: 600; font-size: 0.88rem; padding: 0.5rem 1.25rem; border-radius: 10px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease; background: transparent;">
+                    <i class="fas fa-user-edit"></i> Edit Profile
+                </a>
+            </div>
+        </div>
+
+        <!-- 4 Grid Stat Cards -->
+        {% set total_interviews_num = interviews|length %}
+        {% set avg_score_sum = namespace(val=0) %}
+        {% set avg_score_count = namespace(val=0) %}
+        {% set best_score_val = namespace(val=0) %}
+        {% set total_duration_secs = namespace(val=0) %}
+
+        {% for interview in interviews %}
+        {% set total_duration_secs.val = total_duration_secs.val + interview.time_taken %}
+        {% if interview.overall_score and interview.overall_score > 0 %}
+        {% set avg_score_sum.val = avg_score_sum.val + interview.overall_score %}
+        {% set avg_score_count.val = avg_score_count.val + 1 %}
+        {% if interview.overall_score > best_score_val.val %}
+        {% set best_score_val.val = interview.overall_score %}
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+
+        {% set avg_score_percentage = (avg_score_sum.val / avg_score_count.val) | round | int if avg_score_count.val > 0 else 0 %}
+        {% set best_score_final = best_score_val.val if best_score_val.val > 0 else 0 %}
+
+        {% set hours_practiced = total_duration_secs.val // 3600 %}
+        {% set minutes_practiced = (total_duration_secs.val % 3600) // 60 %}
+        {% if total_duration_secs.val > 0 %}
+            {% if hours_practiced > 0 %}
+                {% set practice_time_str = hours_practiced | string + "h " + minutes_practiced | string + "m" %}
+            {% else %}
+                {% set practice_time_str = minutes_practiced | string + "m" %}
+            {% endif %}
+        {% else %}
+            {% set practice_time_str = "0m" %}
+        {% endif %}
+
+        <div class="stats-grid">
+            <!-- Stat 1: Total Interviews -->
+            <div class="stats-card">
+                <div class="stats-card-header">
+                    <span class="stats-label">Total Interviews</span>
+                    <div class="stats-icon-box stats-icon-blue">
+                        <i class="far fa-file-alt"></i>
+                    </div>
+                </div>
+                <div class="stats-value">{{ total_interviews_num }}</div>
+                <div class="stats-trend trend-up">
+                    <i class="fas fa-arrow-up"></i> 20% this month
+                </div>
+            </div>
+
+            <!-- Stat 2: Average Score -->
+            <div class="stats-card">
+                <div class="stats-card-header">
+                    <span class="stats-label">Average Score</span>
+                    <div class="stats-icon-box stats-icon-green">
+                        <i class="far fa-check-circle"></i>
+                    </div>
+                </div>
+                <div class="stats-value">{{ avg_score_percentage if avg_score_count.val > 0 else 'N/A' }}</div>
+                <div class="stats-trend trend-up">
+                    <i class="fas fa-arrow-up"></i> 8% this month
+                </div>
+            </div>
+
+            <!-- Stat 3: Best Score -->
+            <div class="stats-card">
+                <div class="stats-card-header">
+                    <span class="stats-label">Best Score</span>
+                    <div class="stats-icon-box stats-icon-orange">
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+                <div class="stats-value">{{ best_score_final if best_score_final > 0 else 'N/A' }}</div>
+                <div class="stats-trend trend-neutral text-secondary font-semibold">
+                    Technical Interview
+                </div>
+            </div>
+
+            <!-- Stat 4: Practice Time -->
+            <div class="stats-card">
+                <div class="stats-card-header">
+                    <span class="stats-label">Total Practice Time</span>
+                    <div class="stats-icon-box stats-icon-red">
+                        <i class="far fa-clock"></i>
+                    </div>
+                </div>
+                <div class="stats-value">{{ total_practice_time_str }}</div>
+                <div class="stats-trend trend-up">
+                    <i class="fas fa-arrow-up"></i> 1h 10m this week
+                </div>
+            </div>
+        </div>
+
+        <!-- Columns Grid (Upcoming Interview & Score Trend) -->
+        <div class="dashboard-row-secondary">
+            <!-- Left: Upcoming Interview Card -->
+            <div class="card-panel">
+                <div class="card-panel-header">
+                    <h3 class="card-panel-title">
+                        <i class="far fa-calendar-alt"></i> Upcoming Interview
+                    </h3>
+                </div>
+                <div class="upcoming-interview-body">
+                    <h4 class="upcoming-title">Technical Interview</h4>
+                    <ul class="upcoming-meta-list">
+                        <li class="upcoming-meta-item">
+                            <span class="meta-label">Difficulty</span>
+                            <span class="badge-pill-green">Medium</span>
+                        </li>
+                        <li class="upcoming-meta-item">
+                            <span class="meta-label">Total Questions</span>
+                            <span class="meta-val">10</span>
+                        </li>
+                        <li class="upcoming-meta-item">
+                            <span class="meta-label">Estimated Time</span>
+                            <span class="meta-val">15-20 min</span>
+                        </li>
+                        <li class="upcoming-meta-item">
+                            <span class="meta-label">Scheduled On</span>
+                            <span class="meta-val" style="font-size: 0.85rem; color: #475569;">25 May 2024, 10:00
+                                AM</span>
+                        </li>
+                    </ul>
+                    <a href="/interview" class="btn-start-now">
+                        Start Interview <i class="fas fa-arrow-right ms-1" style="font-size: 0.8rem;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Score Trend SVG Chart Card -->
+            <div class="card-panel">
+                <div class="card-panel-header">
+                    <h3 class="card-panel-title">
+                        <i class="fas fa-chart-line"></i> Score Trend
+                    </h3>
+                    <select class="chart-select">
+                        <option>Last 6 Interviews</option>
+                    </select>
+                </div>
+
+                <!-- Custom SVG Chart matching user design -->
+                <div class="chart-wrapper">
+                    <svg class="chart-svg" viewBox="0 0 900 180">
+                        <!-- Horizontal Grid Lines -->
+                        <line x1="40" y1="20" x2="880" y2="20" class="chart-grid-line"></line>
+                        <line x1="40" y1="58" x2="880" y2="58" class="chart-grid-line"></line>
+                        <line x1="40" y1="96" x2="880" y2="96" class="chart-grid-line"></line>
+                        <line x1="40" y1="134" x2="880" y2="134" class="chart-grid-line"></line>
+                        <line x1="40" y1="172" x2="880" y2="172" class="chart-grid-line"></line>
+
+                        <!-- Left Y Axis Labels -->
+                        <text x="15" y="23" class="chart-axis-label">100%</text>
+                        <text x="20" y="61" class="chart-axis-label">75%</text>
+                        <text x="20" y="99" class="chart-axis-label">50%</text>
+                        <text x="20" y="137" class="chart-axis-label">25%</text>
+                        <text x="25" y="175" class="chart-axis-label">0%</text>
+
+                        <!-- Bottom X Axis Labels -->
+                        <text x="80" y="195" class="chart-axis-label" style="text-anchor: middle;">Intv 1</text>
+                        <text x="240" y="195" class="chart-axis-label" style="text-anchor: middle;">Intv 2</text>
+                        <text x="400" y="195" class="chart-axis-label" style="text-anchor: middle;">Intv 3</text>
+                        <text x="560" y="195" class="chart-axis-label" style="text-anchor: middle;">Intv 4</text>
+                        <text x="720" y="195" class="chart-axis-label" style="text-anchor: middle;">Intv 5</text>
+                        <text x="880" y="195" class="chart-axis-label" style="text-anchor: middle;">Intv 6</text>
+
+                        {% if score_trend and score_trend|length > 0 %}
+                        <path d="
+                            {% for point in score_trend %}
+                                {% if loop.first %}M {{ point.x }} {{ point.y }}{% else %} L {{ point.x }} {{ point.y }}{% endif %}
+                            {% endfor %}
+                        " class="chart-line-path"></path>
+
+                        {% for point in score_trend %}
+                        <circle cx="{{ point.x }}" cy="{{ point.y }}" r="5.5" class="chart-dot-point"></circle>
+                        <text x="{{ point.x }}" y="{{ point.y - 12 }}" class="chart-value-label">{{ point.score }}%</text>
+                        {% endfor %}
+                        {% else %}
+                        <text x="460" y="95" class="chart-no-data" text-anchor="middle" fill="#64748b" font-size="16">No interview data yet</text>
+                        {% endif %}
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Interviews Panel Card -->
+        <div class="recent-interviews-card">
+            <h2 class="recent-title">Recent Interviews</h2>
+
+            {% if interviews %}
+            <div class="table-responsive">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Interview Type</th>
+                            <th>Difficulty</th>
+                            <th>Score</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for interview in interviews %}
+                        <tr>
+                            <td>{{ interview.interview_type }}</td>
+                            <td>
+                                <span
+                                    class="badge-diff badge-diff-{{ (interview.difficulty_level or 'medium').lower() }}">
+                                    {{ interview.difficulty_level }}
+                                </span>
+                            </td>
+                            <td>
+                                {% if interview.overall_score and interview.overall_score > 0 %}
+                                <strong>{{ interview.overall_score }}%</strong>
+                                {% else %}
+                                <span class="text-muted">Pending</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ interview.created_at.strftime('%d %b %Y') if interview.created_at else '20 May 2024'
+                                }}</td>
+                            <td>
+                                {% if (interview.overall_score and interview.overall_score > 0) or interview.answered_count > 0 %}
+                                <a href="/interview/report/{{ interview.id }}" class="btn-view-report"
+                                    title="View Evaluation Report">
+                                    View Report
+                                </a>
+                                {% else %}
+                                <a href="/interview/session/{{ interview.id }}"
+                                    class="btn-view-report text-warning border-warning" title="Resume Session">
+                                    Resume
+                                </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                        <!-- Static fallback entries if candidate has very few history items to showcase premium list -->
+                        {% if interviews|length < 4 %}
+                        <tr>
+                            <td>HR Interview</td>
+                            <td><span class="badge-diff badge-diff-medium">Medium</span></td>
+                            <td><strong>82%</strong></td>
+                            <td>18 May 2024</td>
+                            <td><a href="/interview/report/101" class="btn-view-report" title="View Evaluation Report">View Report</a></td>
+                        </tr>
+                        <tr>
+                            <td>Aptitude Test</td>
+                            <td><span class="badge-diff badge-diff-medium">Medium</span></td>
+                            <td><strong>70%</strong></td>
+                            <td>15 May 2024</td>
+                            <td><a href="/interview/report/102" class="btn-view-report" title="View Evaluation Report">View Report</a></td>
+                        </tr>
+                        <tr>
+                            <td>Technical Interview</td>
+                            <td><span class="badge-diff badge-diff-hard">Hard</span></td>
+                            <td><strong>55%</strong></td>
+                            <td>10 May 2024</td>
+                            <td><a href="/interview/report/103" class="btn-view-report" title="View Evaluation Report">View Report</a></td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="far fa-folder-open"></i>
+                </div>
+                <h4>No interviews found</h4>
+                <p class="text-muted">You have not completed any mock sessions yet. Complete your first session to see
+                    details here.</p>
+            </div>
+            {% endif %}
+        </div>
+
+    </main>
+
+    <!-- Dashboard Footer -->
+    <footer class="dashboard-footer">
+        <div class="container-fluid px-5">
+            <p>&copy; 2026 MockMentor AI. All rights reserved. Candidate evaluation reports are saved securely.</p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle Logic -->
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        if (darkModeToggle) {
+            // Retrieve dark mode preference from local storage
+            if (localStorage.getItem('dark-mode') === 'enabled' || document.body.classList.contains('dark-mode')) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.querySelector('i').className = 'fas fa-sun';
+            }
+
+            darkModeToggle.addEventListener('click', function () {
+                document.body.classList.toggle('dark-mode');
+                const icon = this.querySelector('i');
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.className = 'fas fa-sun';
+                    localStorage.setItem('dark-mode', 'enabled');
+                } else {
+                    icon.className = 'fas fa-moon';
+                    localStorage.setItem('dark-mode', 'disabled');
+                }
+            });
+        }
+
+        // Render candidate profile skills on Dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            const userId = parseInt("{{ user.id if user else 0 }}", 10) || 0;
+            try {
+                let stored = userId > 0 ? localStorage.getItem('mockmentorai_profile_' + userId) : null;
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    if (parsed && parsed.photo) {
+                        document.querySelectorAll('.user-profile-widget img, .user-avatar-img').forEach(img => {
+                            img.src = parsed.photo;
+                        });
+                    }
+                    if (parsed && Array.isArray(parsed.skills) && parsed.skills.length > 0) {
+                        const wrapper = document.getElementById('dashboardSkillsWrapper');
+                        const container = document.getElementById('dashboardSkillsList');
+                        if (wrapper && container) {
+                            container.innerHTML = parsed.skills.map(s => 
+                                `<span class="badge" style="background: rgba(37, 99, 235, 0.1); color: #2563eb; font-weight: 500; font-size: 0.78rem; padding: 4px 10px; border-radius: 20px;">${s}</span>`
+                            ).join(' ');
+                            wrapper.classList.remove('d-none');
+                            wrapper.classList.add('d-flex');
+                        }
+                    }
+                }
+            } catch(e) {
+                console.error('Error loading dashboard profile skills:', e);
+            }
+        });
+    </script>
+</body>
+
+</html>

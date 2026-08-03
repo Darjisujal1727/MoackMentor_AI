@@ -1,0 +1,552 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MockMentor AI - Interview Evaluation Report</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --accent-green: #10b981;
+            --accent-yellow: #f59e0b;
+            --accent-purple: #8b5cf6;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Top Navbar */
+        .report-header-nav {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .brand-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-action {
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 0.5rem 1.25rem;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline-custom {
+            border: 1.5px solid var(--border-color);
+            color: var(--text-dark);
+            background: #ffffff;
+        }
+        .btn-outline-custom:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+            background: #f1f5f9;
+        }
+
+        .btn-primary-custom {
+            background: var(--primary-blue);
+            color: #ffffff;
+            border: 1.5px solid var(--primary-blue);
+        }
+        .btn-primary-custom:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+            color: #ffffff;
+        }
+
+        /* Container */
+        .report-main-container {
+            max-width: 1050px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Banner */
+        .report-hero-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
+        }
+
+        .report-hero-card::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+        }
+
+        .report-title-badge {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.2);
+            color: #60a5fa;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-meta {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Overall Score Ring / Box */
+        .score-display-box {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 170px;
+        }
+
+        .score-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #10b981;
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            font-weight: 600;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Section Card */
+        .section-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.75rem;
+            border: 1px solid var(--border-color);
+            margin-top: 1.75rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        }
+
+        .section-header-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-header-title i {
+            color: var(--primary-blue);
+        }
+
+        /* Metric Grid */
+        .metric-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .mini-metric-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+        }
+
+        .mini-metric-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .mini-metric-val {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-top: 4px;
+        }
+
+        /* Progress Bar */
+        .skill-progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: #e2e8f0;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+
+        .skill-progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+        }
+
+        /* Question Evaluation Card */
+        .q-eval-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            transition: all 0.2s ease;
+        }
+
+        .q-eval-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        }
+
+        .q-number-pill {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .q-text {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .box-answer {
+            background: #f8fafc;
+            border-left: 4px solid #94a3b8;
+            border-radius: 8px;
+            padding: 1rem;
+            font-size: 0.92rem;
+            color: #334155;
+            margin-bottom: 0.85rem;
+        }
+
+        .box-ideal {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            border-radius: 8px;
+            padding: 1rem;
+            font-size: 0.92rem;
+            color: #166534;
+            margin-bottom: 0.85rem;
+        }
+
+        .feedback-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+            font-size: 0.88rem;
+            color: #1e40af;
+        }
+
+        .star-rating i {
+            color: #f59e0b;
+            font-size: 0.88rem;
+        }
+
+        /* Badge Difficulty */
+        .badge-diff {
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        .badge-diff-easy { background: #dcfce7; color: #15803d; }
+        .badge-diff-medium { background: #fef3c7; color: #b45309; }
+        .badge-diff-hard { background: #fee2e2; color: #b91c1c; }
+
+        /* Print Media Styles */
+        @media print {
+            .report-header-nav, .no-print {
+                display: none !important;
+            }
+            body {
+                background: #ffffff !important;
+            }
+            .report-main-container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .report-hero-card {
+                background: #0f172a !important;
+                color: #ffffff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .section-card, .q-eval-card, .box-ideal, .box-answer, .feedback-box {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navbar -->
+    <header class="report-header-nav no-print">
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="/dashboard" class="brand-logo">
+                <i class="fas fa-brain"></i>
+                <span>MockMentor AI <span style="font-size: 0.75rem; font-weight: 500; color: var(--text-muted);">AI Evaluation Report</span></span>
+            </a>
+            <div class="d-flex gap-2">
+                <a href="/dashboard" class="btn-action btn-outline-custom">
+                    <i class="fas fa-arrow-left"></i> Dashboard
+                </a>
+                <button onclick="window.print()" class="btn-action btn-outline-custom">
+                    <i class="fas fa-print"></i> Print
+                </button>
+                <a href="/api/interview/{{ interview.id }}/download_pdf" class="btn-action btn-primary-custom">
+                    <i class="fas fa-download"></i> Download PDF
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Report Body -->
+    <main class="report-main-container">
+        
+        <!-- Hero Summary Card -->
+        <div class="report-hero-card">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-4">
+                <div>
+                    <span class="report-title-badge">Verified Evaluation Report</span>
+                    <h1 class="hero-title">{{ interview.interview_type }} Session Report</h1>
+                    <div class="hero-meta">
+                        <span><i class="far fa-user"></i> Candidate: <strong>{{ user.full_name or 'Darji Sujal' }}</strong></span>
+                        <span><i class="far fa-calendar-alt"></i> Date: <strong>{{ interview.created_at.strftime('%d %b %Y, %I:%M %p') if interview.created_at else '24 Jul 2026' }}</strong></span>
+                        <span><i class="far fa-clock"></i> Duration: <strong>{{ interview.time_taken // 60 if interview.time_taken else 12 }} mins</strong></span>
+                        <span>Difficulty: <strong class="badge-diff badge-diff-{{ (interview.difficulty_level or 'Medium').lower() }}">{{ interview.difficulty_level or 'Medium' }}</strong></span>
+                    </div>
+                </div>
+                
+                <div class="score-display-box">
+                    <div class="score-number">{{ overall_score }}%</div>
+                    <div class="score-label">Overall Performance</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metrics Overview Grid -->
+        <div class="section-card">
+            <div class="section-header-title">
+                <i class="fas fa-chart-pie"></i> Performance Analytics & Key Metrics
+            </div>
+            
+            <div class="metric-card-grid">
+                <div class="mini-metric-item">
+                    <div class="mini-metric-label">Questions Answered</div>
+                    <div class="mini-metric-val">{{ interview.answered_count or answers|length }} / {{ interview.total_questions or answers|length }}</div>
+                </div>
+                <div class="mini-metric-item">
+                    <div class="mini-metric-label">Accuracy & Competency</div>
+                    <div class="mini-metric-val" style="color: #10b981;">
+                        {% if overall_score >= 80 %}Excellent{% elif overall_score >= 65 %}Good{% else %}Needs Practice{% endif %}
+                    </div>
+                </div>
+                <div class="mini-metric-item">
+                    <div class="mini-metric-label">Pace & Response Speed</div>
+                    <div class="mini-metric-val" style="color: #2563eb;">Optimal</div>
+                </div>
+                <div class="mini-metric-item">
+                    <div class="mini-metric-label">AI Recommendation</div>
+                    <div class="mini-metric-val" style="font-size: 1rem; color: #8b5cf6;">
+                        {% if overall_score >= 75 %}Ready for Onsite{% else %}Practice Fundamentals{% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skill Competency Progress Bars -->
+            <div class="mt-4">
+                <h6 class="fw-bold mb-3" style="font-size: 0.95rem; color: var(--text-dark);">Core Competency Breakdown</h6>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between font-sm font-semibold mb-1" style="font-size: 0.85rem;">
+                            <span>Technical Subject Knowledge</span>
+                            <span class="fw-bold" style="color: var(--primary-blue);">{{ score_tech }}%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress-fill" style="width: {{ score_tech }}%;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between font-sm font-semibold mb-1" style="font-size: 0.85rem;">
+                            <span>Problem Solving & Logic</span>
+                            <span class="fw-bold" style="color: var(--primary-blue);">{{ score_problem }}%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress-fill" style="width: {{ score_problem }}%;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between font-sm font-semibold mb-1" style="font-size: 0.85rem;">
+                            <span>Communication & Structure</span>
+                            <span class="fw-bold" style="color: var(--primary-blue);">{{ score_comm }}%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress-fill" style="width: {{ score_comm }}%;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between font-sm font-semibold mb-1" style="font-size: 0.85rem;">
+                            <span>Confidence & Professionalism</span>
+                            <span class="fw-bold" style="color: var(--primary-blue);">{{ score_conf }}%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress-fill" style="width: {{ score_conf }}%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question-by-Question Detailed Evaluation -->
+        <div class="section-card">
+            <div class="section-header-title">
+                <i class="fas fa-list-check"></i> Detailed Question-by-Question Breakdown
+            </div>
+
+            {% for item in eval_items %}
+            <div class="q-eval-card">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                    <span class="q-number-pill">Question {{ item.q_num }}</span>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="star-rating">
+                            {% for n in range(item.stars) %}
+                            <i class="fas fa-star"></i>
+                            {% endfor %}
+                            {% for n in range(5 - item.stars) %}
+                            <i class="far fa-star"></i>
+                            {% endfor %}
+                        </div>
+                        <span class="fw-bold" style="font-size: 0.88rem; color: #1e293b;">{{ item.score_percent }}%</span>
+                    </div>
+                </div>
+
+                <div class="q-text">{{ item.question_text }}</div>
+
+                <div class="fw-bold mb-1" style="font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase;">Your Response:</div>
+                <div class="box-answer">
+                    <i class="fas fa-user-circle me-2 text-secondary"></i> {{ item.answer_text or 'No answer provided by candidate.' }}
+                </div>
+
+                <div class="fw-bold mb-1" style="font-size: 0.82rem; color: #166534; text-transform: uppercase;">Ideal Model Answer:</div>
+                <div class="box-ideal">
+                    <i class="fas fa-check-circle me-2 text-success"></i> {{ item.ideal_answer }}
+                </div>
+
+                <div class="feedback-box">
+                    <i class="fas fa-lightbulb me-2"></i> <strong>AI Feedback:</strong> {{ item.feedback }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Strengths & Suggestions Card -->
+        <div class="row g-3 mt-1 mb-5">
+            <div class="col-md-6">
+                <div class="section-card h-100 mt-0">
+                    <div class="section-header-title text-success">
+                        <i class="fas fa-thumbs-up"></i> Key Strengths Observed
+                    </div>
+                    <ul class="list-unstyled mb-0" style="font-size: 0.92rem; color: #334155; line-height: 1.8;">
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Clear explanation of core technical principles.</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Structured problem-solving methodology.</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Confident voice tone and precise terminology.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="section-card h-100 mt-0">
+                    <div class="section-header-title text-primary">
+                        <i class="fas fa-arrow-trend-up"></i> Actionable Growth Areas
+                    </div>
+                    <ul class="list-unstyled mb-0" style="font-size: 0.92rem; color: #334155; line-height: 1.8;">
+                        <li><i class="fas fa-lightbulb text-primary me-2"></i> Provide practical code/scenario examples in responses.</li>
+                        <li><i class="fas fa-lightbulb text-primary me-2"></i> Elaborate on edge-case handling and security checks.</li>
+                        <li><i class="fas fa-lightbulb text-primary me-2"></i> Practice speed optimization questions under timed conditions.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 border-top text-muted no-print" style="font-size: 0.85rem;">
+        <p class="mb-0">&copy; 2026 MockMentor AI Evaluation System. All candidate evaluations are verified and encrypted.</p>
+    </footer>
+
+</body>
+</html>

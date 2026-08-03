@@ -1,0 +1,1161 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MockMentor AI - Edit Profile</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-main: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            --gradient-start: #4f46e5;
+            --gradient-end: #7c3aed;
+            --primary-light-bg: #eff6ff;
+            --tag-bg: #ecfdf5;
+            --tag-text: #10b981;
+            --tag-border: #a7f3d0;
+            --section-muted-bg: #f8fafc;
+            --input-focus-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+        }
+
+        body.dark-mode {
+            --bg-main: #0f172a;
+            --card-bg: #1e293b;
+            --text-dark: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            --primary-light-bg: rgba(37, 99, 235, 0.12);
+            --section-muted-bg: #0f172a;
+            --tag-bg: #064e3b;
+            --tag-text: #6ee7b7;
+            --tag-border: #047857;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Navbar */
+        .dashboard-navbar {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.75rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .brand-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .brand-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: #eff6ff;
+            border-radius: 10px;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .brand-title {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            line-height: 1;
+        }
+
+        .brand-subtitle-mini {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar-links-center {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 1.75rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-links-center a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .navbar-links-center a:hover {
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 991px) {
+            .navbar-links-center {
+                display: none;
+            }
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .btn-icon {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .btn-icon:hover {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 18px;
+            height: 18px;
+            background-color: #ef4444;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.68rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--card-bg);
+        }
+
+        .user-profile-widget {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .user-avatar-img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+        }
+
+        .user-meta {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .user-role-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .btn-logout {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1.5px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 0.45rem 1.1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-logout:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .dashboard-container {
+            max-width: 920px;
+            margin: 2.5rem auto 3rem;
+            padding: 0 3.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .page-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-back-dashboard {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .btn-back-dashboard:hover {
+            color: var(--primary-blue);
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 0.35rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s, border-color 0.3s;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+        }
+
+        body.dark-mode .section-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-card-title i {
+            color: var(--gradient-start);
+            font-size: 1rem;
+        }
+
+        .section-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .section-card-header .section-card-title {
+            margin-bottom: 0;
+        }
+
+        .btn-link-edit {
+            border: none;
+            background: none;
+            color: var(--primary-blue);
+            font-size: 0.88rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .btn-link-edit:hover {
+            color: var(--primary-hover);
+        }
+
+        /* Personal information */
+        .personal-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1.5rem 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 767px) {
+            .personal-grid {
+                grid-template-columns: 1fr;
+            }
+            .profile-photo-block {
+                justify-self: center;
+            }
+        }
+
+        .info-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            .info-row {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
+            }
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .info-input {
+            border: none;
+            background: transparent;
+            width: 100%;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            padding: 0.15rem 0;
+            outline: none;
+        }
+
+        .info-input:disabled {
+            color: var(--text-muted);
+            cursor: not-allowed;
+        }
+
+        .info-input:focus {
+            border-bottom: 1px solid var(--primary-blue);
+            box-shadow: var(--input-focus-shadow);
+        }
+
+        .profile-photo-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 140px;
+        }
+
+        .avatar-circle {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: var(--primary-light-bg);
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: var(--primary-blue);
+            font-size: 2.25rem;
+        }
+
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn-outline-primary-custom {
+            border: 1.5px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 0.45rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline-primary-custom:hover {
+            background: var(--primary-blue);
+            color: #fff;
+        }
+
+        #photoInput {
+            display: none;
+        }
+
+        /* Skills */
+        .skills-tags-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-weight: 600;
+            font-size: 0.82rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--tag-border);
+        }
+
+        .skill-tag .remove-tag {
+            cursor: pointer;
+            font-size: 0.8rem;
+            opacity: 0.75;
+            line-height: 1;
+        }
+
+        .skill-tag .remove-tag:hover {
+            opacity: 1;
+        }
+
+        .skill-input-row {
+            display: none;
+            margin-top: 0.75rem;
+        }
+
+        .skill-input-row.active {
+            display: block;
+        }
+
+        .skill-input-row .form-control {
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            font-size: 0.88rem;
+            height: 44px;
+            background: var(--card-bg);
+            color: var(--text-dark);
+        }
+
+        .skill-input-row .form-control:focus {
+            border-color: var(--primary-blue);
+            box-shadow: var(--input-focus-shadow);
+        }
+
+        /* Education */
+        .education-item {
+            background: var(--section-muted-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem 1.1rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .education-degree {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-bottom: 0.35rem;
+        }
+
+        .education-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.35rem 0.5rem;
+        }
+
+        .education-meta i {
+            font-size: 0.75rem;
+        }
+
+        .education-actions {
+            display: flex;
+            gap: 0.65rem;
+            flex-shrink: 0;
+        }
+
+        .btn-icon-action {
+            border: none;
+            background: none;
+            padding: 0.25rem;
+            cursor: pointer;
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .btn-icon-action.edit {
+            color: var(--primary-blue);
+        }
+
+        .btn-icon-action.delete {
+            color: #ef4444;
+        }
+
+        .btn-add-education {
+            border: 1px solid #bfdbfe;
+            color: var(--primary-blue);
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-add-education:hover {
+            background: var(--primary-light-bg);
+            border-color: var(--primary-blue);
+        }
+
+        /* Preferences */
+        .preferences-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        @media (max-width: 576px) {
+            .preferences-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pref-label {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-select-custom {
+            width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.6rem 2rem 0.6rem 0.85rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            background-color: var(--card-bg);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.85rem center;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-select-custom:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: var(--input-focus-shadow);
+        }
+
+        .btn-save {
+            width: 100%;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 0.9rem 1.25rem;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px -6px rgba(99, 102, 241, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px -4px rgba(99, 102, 241, 0.55);
+            color: #fff;
+        }
+
+        .alert {
+            border-radius: 12px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .dashboard-footer {
+            border-top: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 2rem;
+        }
+
+        .education-form-panel {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            border: 1px dashed var(--border-color);
+            border-radius: 10px;
+        }
+
+        .education-form-panel.active {
+            display: block;
+        }
+
+        .education-form-panel .form-control {
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            font-size: 0.88rem;
+            height: 44px;
+            background: var(--card-bg);
+            color: var(--text-dark);
+        }
+
+        .education-form-panel .form-control:focus {
+            border-color: var(--primary-blue);
+            box-shadow: var(--input-focus-shadow);
+        }
+
+        .education-form-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .btn-sm-custom {
+            border-radius: 8px;
+            padding: 0.4rem 0.85rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-dark);
+        }
+
+        .btn-sm-custom.primary {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            border-color: transparent;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dashboard Navbar -->
+    <header class="dashboard-navbar">
+        <div class="d-flex justify-content-between align-items-center">
+            <!-- Brand Logo -->
+            <a class="brand-logo-container" href="/">
+                <div class="brand-logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div>
+                    <span class="brand-title">MockMentor AI</span>
+                    <div class="brand-subtitle-mini">AI Candidate Workspace</div>
+                </div>
+            </a>
+
+            <!-- Navigation Links in Center -->
+            <ul class="navbar-links-center">
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/how-it-works">How It Works</a></li>
+                <li><a href="/benefits">Benefits</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+
+            <!-- Navigation Actions -->
+            <div class="nav-actions">
+                <!-- Theme Toggle Button -->
+                <!-- <button class="btn-icon" id="darkModeToggle" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i>
+                </button> -->
+
+                <!-- Notification Bell -->
+                <div class="btn-icon" title="Notifications">
+                    <i class="far fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+
+                <!-- User Profile Widget -->
+                <a href="/dashboard" class="user-profile-widget" title="Your profile">
+                    <img src="{{ url_for('static', filename='images/ai_interviewer.png') }}" class="user-avatar-img"
+                        alt="User Profile Image">
+                    <div class="user-meta d-none d-sm-flex">
+                        <span>{{ user.full_name or 'Candidate User' }}</span>
+                        <span class="user-role-label">{% if session.get('is_admin') or (user and user.email == 'admin@mockmentorai.com') %}Administrator{% else %}Candidate{% endif %}</span>
+                    </div>
+                    <i class="fas fa-chevron-down ms-1 text-muted" style="font-size: 0.75rem;"></i>
+                </a>
+
+                <!-- Logout Button -->
+                <a href="/logout" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <div class="page-header-row">
+            <div>
+                <a href="/dashboard" class="btn-back-dashboard mb-2 d-inline-flex">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </a>
+                <h1 class="page-title">Edit Profile</h1>
+                <p class="page-subtitle">Manage your profile and preferences</p>
+            </div>
+        </div>
+
+        <div id="statusAlert" class="alert d-none" role="alert"></div>
+
+        <form id="editProfileForm">
+            <!-- Personal Information -->
+            <div class="section-card">
+                <h2 class="section-card-title"><i class="far fa-user"></i> Personal Information</h2>
+                <div class="personal-grid">
+                    <div class="info-rows">
+                        <div class="info-row">
+                            <span class="info-label">Full Name</span>
+                            <input type="text" class="info-input" id="fullName" name="full_name"
+                                   value="{{ user.full_name or '' }}" placeholder="Your full name" required>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Email</span>
+                            <input type="email" class="info-input" id="emailAddress" value="{{ user.email }}" disabled>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Phone</span>
+                            <input type="tel" class="info-input" id="mobileNumber" name="mobile"
+                                   value="{{ user.mobile or '' }}" placeholder="+91 98765 43210">
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Location</span>
+                            <input type="text" class="info-input" id="location" placeholder="City, Country">
+                        </div>
+                    </div>
+                    <div class="profile-photo-block">
+                        <div class="avatar-circle" id="avatarPreview">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <button type="button" class="btn-outline-primary-custom" id="btnChangePhoto">Change Photo</button>
+                        <input type="file" id="photoInput" accept="image/*">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="section-card">
+                <div class="section-card-header">
+                    <h2 class="section-card-title mb-0"><i class="fas fa-code"></i> Skills</h2>
+                    <button type="button" class="btn-link-edit" id="btnEditSkills">
+                        <i class="fas fa-pen"></i> Edit
+                    </button>
+                </div>
+                <div class="skills-tags-wrapper" id="skillsContainer"></div>
+                <div class="skill-input-row" id="skillInputRow">
+                    <input type="text" class="form-control" id="skillInput"
+                           placeholder="Type a skill and press Enter">
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="section-card">
+                <h2 class="section-card-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+                <div id="educationList"></div>
+                <button type="button" class="btn-add-education" id="btnAddEducation">
+                    <i class="fas fa-plus"></i> Add Education
+                </button>
+                <div class="education-form-panel" id="educationFormPanel">
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="eduDegree" placeholder="Degree (e.g. B.Tech in Computer Science)">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="eduUniversity" placeholder="University">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="eduStart" placeholder="Start year">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="eduEnd" placeholder="End year">
+                        </div>
+                    </div>
+                    <div class="education-form-actions">
+                        <button type="button" class="btn-sm-custom primary" id="btnSaveEducation">Save entry</button>
+                        <button type="button" class="btn-sm-custom" id="btnCancelEducation">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preferences -->
+            <div class="section-card">
+                <h2 class="section-card-title"><i class="fas fa-sliders-h"></i> Preferences</h2>
+                <div class="preferences-grid">
+                    <div>
+                        <div class="pref-label">Interview Type</div>
+                        <select class="form-select-custom" id="interviewType" name="interview_type">
+                            <option value="Technical" selected>Technical</option>
+                            <option value="HR">HR</option>
+                            <option value="Behavioral">Behavioral</option>
+                            <option value="Mixed">Mixed</option>
+                        </select>
+                    </div>
+                    <div>
+                        <div class="pref-label">Default Difficulty</div>
+                        <select class="form-select-custom" id="defaultDifficulty" name="default_difficulty">
+                            <option value="Easy" selected>Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-save">
+                <i class="fas fa-save"></i> Save Changes
+            </button>
+        </form>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="container-fluid px-5">
+            <p class="mb-0">&copy; 2026 MockMentor AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        if (darkModeToggle) {
+            if (localStorage.getItem('dark-mode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.querySelector('i').className = 'fas fa-sun';
+            }
+
+            darkModeToggle.addEventListener('click', function () {
+                document.body.classList.toggle('dark-mode');
+                const icon = this.querySelector('i');
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.className = 'fas fa-sun';
+                    localStorage.setItem('dark-mode', 'enabled');
+                } else {
+                    icon.className = 'fas fa-moon';
+                    localStorage.setItem('dark-mode', 'disabled');
+                }
+            });
+        }
+
+        const currentUserId = parseInt("{{ user.id if user else 0 }}", 10) || 0;
+        const storageKey = 'mockmentorai_profile_' + currentUserId;
+        const defaultSkills = ['JavaScript', 'Angular', 'HTML', 'CSS', 'Python', 'SQL'];
+        const defaultEducation = [{
+            degree: 'B.Tech in Computer Science',
+            university: 'Mumbai University',
+            start: '2020',
+            end: '2024'
+        }];
+
+        let skills = [];
+        let education = [];
+        let editingEducationIndex = null;
+
+        const skillsContainer = document.getElementById('skillsContainer');
+        const skillInputRow = document.getElementById('skillInputRow');
+        const skillInput = document.getElementById('skillInput');
+        const educationList = document.getElementById('educationList');
+        const educationFormPanel = document.getElementById('educationFormPanel');
+        const alertBox = document.getElementById('statusAlert');
+        const form = document.getElementById('editProfileForm');
+
+        function loadStoredProfile() {
+            try {
+                const raw = localStorage.getItem(storageKey);
+                if (!raw) return null;
+                return JSON.parse(raw);
+            } catch {
+                return null;
+            }
+        }
+
+        function saveStoredProfile(extra) {
+            const payload = {
+                location: document.getElementById('location').value.trim(),
+                skills,
+                education,
+                interview_type: document.getElementById('interviewType').value,
+                default_difficulty: document.getElementById('defaultDifficulty').value,
+                photo: extra && extra.photo !== undefined ? extra.photo : (loadStoredProfile() || {}).photo || null
+            };
+            localStorage.setItem(storageKey, JSON.stringify(payload));
+        }
+
+        function renderSkills() {
+            skillsContainer.innerHTML = '';
+            skills.forEach((skill, index) => {
+                const tag = document.createElement('span');
+                tag.className = 'skill-tag';
+                tag.innerHTML = `${escapeHtml(skill)} <span class="remove-tag" data-index="${index}" title="Remove">&times;</span>`;
+                skillsContainer.appendChild(tag);
+            });
+            skillsContainer.querySelectorAll('.remove-tag').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    skills.splice(Number(btn.dataset.index), 1);
+                    renderSkills();
+                });
+            });
+        }
+
+        function renderEducation() {
+            educationList.innerHTML = '';
+            education.forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = 'education-item';
+                row.innerHTML = `
+                    <div>
+                        <div class="education-degree">${escapeHtml(item.degree)}</div>
+                        <div class="education-meta">
+                            <span><i class="fas fa-graduation-cap"></i> ${escapeHtml(item.university)}</span>
+                            <span><i class="far fa-calendar-alt"></i> ${escapeHtml(item.start)} - ${escapeHtml(item.end)}</span>
+                        </div>
+                    </div>
+                    <div class="education-actions">
+                        <button type="button" class="btn-icon-action edit" data-index="${index}" title="Edit"><i class="fas fa-pen"></i></button>
+                        <button type="button" class="btn-icon-action delete" data-index="${index}" title="Delete"><i class="far fa-trash-alt"></i></button>
+                    </div>
+                `;
+                educationList.appendChild(row);
+            });
+
+            educationList.querySelectorAll('.btn-icon-action.edit').forEach(btn => {
+                btn.addEventListener('click', () => openEducationForm(Number(btn.dataset.index)));
+            });
+            educationList.querySelectorAll('.btn-icon-action.delete').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    education.splice(Number(btn.dataset.index), 1);
+                    renderEducation();
+                });
+            });
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str || '';
+            return div.innerHTML;
+        }
+
+        function openEducationForm(index) {
+            editingEducationIndex = index !== undefined && index !== null ? index : null;
+            educationFormPanel.classList.add('active');
+            if (editingEducationIndex !== null && education[editingEducationIndex]) {
+                const e = education[editingEducationIndex];
+                document.getElementById('eduDegree').value = e.degree;
+                document.getElementById('eduUniversity').value = e.university;
+                document.getElementById('eduStart').value = e.start;
+                document.getElementById('eduEnd').value = e.end;
+            } else {
+                document.getElementById('eduDegree').value = '';
+                document.getElementById('eduUniversity').value = '';
+                document.getElementById('eduStart').value = '';
+                document.getElementById('eduEnd').value = '';
+            }
+        }
+
+        function closeEducationForm() {
+            educationFormPanel.classList.remove('active');
+            editingEducationIndex = null;
+        }
+
+        function initProfileData() {
+            const stored = loadStoredProfile();
+            skills = (stored && stored.skills && stored.skills.length) ? stored.skills.slice() : defaultSkills.slice();
+            education = (stored && stored.education && stored.education.length) ? stored.education.slice() : defaultEducation.slice();
+
+            if (stored && stored.location) {
+                document.getElementById('location').value = stored.location;
+            } else {
+                document.getElementById('location').value = 'Mumbai, India';
+            }
+            if (stored && stored.interview_type) {
+                document.getElementById('interviewType').value = stored.interview_type;
+            }
+            if (stored && stored.default_difficulty) {
+                document.getElementById('defaultDifficulty').value = stored.default_difficulty;
+            }
+            if (stored && stored.photo) {
+                const avatar = document.getElementById('avatarPreview');
+                if (avatar) avatar.innerHTML = `<img src="${stored.photo}" alt="Profile">`;
+                document.querySelectorAll('.user-profile-widget img, .user-avatar-img').forEach(img => {
+                    img.src = stored.photo;
+                });
+            }
+
+            renderSkills();
+            renderEducation();
+        }
+
+        document.getElementById('btnEditSkills').addEventListener('click', () => {
+            skillInputRow.classList.toggle('active');
+            if (skillInputRow.classList.contains('active')) {
+                skillInput.focus();
+            }
+        });
+
+        skillInput.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter') return;
+            e.preventDefault();
+            const val = skillInput.value.trim();
+            if (val && !skills.some(s => s.toLowerCase() === val.toLowerCase())) {
+                skills.push(val);
+                renderSkills();
+            }
+            skillInput.value = '';
+        });
+
+        document.getElementById('btnAddEducation').addEventListener('click', () => openEducationForm(null));
+        document.getElementById('btnCancelEducation').addEventListener('click', closeEducationForm);
+        document.getElementById('btnSaveEducation').addEventListener('click', () => {
+            const entry = {
+                degree: document.getElementById('eduDegree').value.trim(),
+                university: document.getElementById('eduUniversity').value.trim(),
+                start: document.getElementById('eduStart').value.trim(),
+                end: document.getElementById('eduEnd').value.trim()
+            };
+            if (!entry.degree || !entry.university) return;
+            if (editingEducationIndex !== null) {
+                education[editingEducationIndex] = entry;
+            } else {
+                education.push(entry);
+            }
+            renderEducation();
+            closeEducationForm();
+        });
+
+        document.getElementById('btnChangePhoto').addEventListener('click', () => {
+            document.getElementById('photoInput').click();
+        });
+
+        document.getElementById('photoInput').addEventListener('change', (e) => {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+                const avatar = document.getElementById('avatarPreview');
+                if (avatar) avatar.innerHTML = `<img src="${reader.result}" alt="Profile">`;
+                document.querySelectorAll('.user-profile-widget img, .user-avatar-img').forEach(img => {
+                    img.src = reader.result;
+                });
+                saveStoredProfile({ photo: reader.result });
+            };
+            reader.readAsDataURL(file);
+        });
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const mobile = document.getElementById('mobileNumber').value.trim();
+
+            alertBox.className = 'alert d-none';
+
+            fetch('/edit-profile', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ full_name: fullName, mobile: mobile })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    saveStoredProfile({});
+                    alertBox.className = 'alert alert-success';
+                    alertBox.textContent = 'Profile updated successfully! Redirecting...';
+                    setTimeout(() => {
+                        window.location.href = data.redirect || '/dashboard';
+                    }, 1000);
+                } else {
+                    alertBox.className = 'alert alert-danger';
+                    alertBox.textContent = data.message || 'An error occurred.';
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alertBox.className = 'alert alert-danger';
+                alertBox.textContent = 'Server communication failure.';
+            });
+        });
+
+        initProfileData();
+    </script>
+</body>
+</html>
